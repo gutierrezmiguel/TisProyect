@@ -18,7 +18,8 @@ public class Ova {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idOva;
+    @Column(name = "idOva")
+    private Integer idOva;
 
     @Column(name = "title")
     private String title;
