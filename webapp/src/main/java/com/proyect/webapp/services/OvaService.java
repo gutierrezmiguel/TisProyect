@@ -26,7 +26,8 @@ public class OvaService implements IOva {
 
     @Override
     public Optional<Ova> listarid(int id) {
-        return Optional.empty();
+
+        return ovaRepository.findById(id);
     }
 
     @Override
@@ -41,6 +42,6 @@ public class OvaService implements IOva {
 
     @Override
     public void delete(int id) {
-
+        ovaRepository.deleteById(id);
     }
 }

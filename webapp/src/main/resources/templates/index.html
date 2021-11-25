@@ -32,7 +32,7 @@
         </thead>
         <tbody>
         <tr th:each="ova:${ovas}">
-            <td th:id="${ova.idOva}"></td>
+            <td th:text="${ova.idOva}"></td>
             <td th:text="${ova.title}"></td>
             <td th:text="${ova.creator}"></td>
             <td th:text="${ova.subject}"></td>
@@ -50,12 +50,16 @@
             <td th:text="${ova.rights}"></td>
             <td th:text="${ova.rating}"></td>
             <td>
-                <a class="btn btn-warning">Editar</a>
-                <a class="btn btn-danger">Eliminar</a>
+                <a th:href="@{/editar/} + ${ova.idOva}" class="btn btn-warning">Editar</a>
+                <a th:onclick="eliminar([[${ova.idOva}]])" class="btn btn-danger">Eliminar</a>
             </td>
         </tr>
         </tbody>
     </table>
 </div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="funciones.js"></script>
 </body>
 </html>
