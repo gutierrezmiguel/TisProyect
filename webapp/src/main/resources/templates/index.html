@@ -27,7 +27,7 @@
             <th>Relation</th>
             <th>Coverage</th>
             <th>Rights</th>
-            <th>rating</th>
+            <th>ova File</th>
         </tr>
         </thead>
         <tbody>
@@ -48,7 +48,7 @@
             <td th:text="${ova.relation}"></td>
             <td th:text="${ova.coverage}"></td>
             <td th:text="${ova.rights}"></td>
-            <td th:text="${ova.rating}"></td>
+            <td th:text="${ova.ovaFile}"></td>
             <td>
                 <a th:href="@{/editar/} + ${ova.idOva}" class="btn btn-warning">Editar</a>
                 <a th:onclick="eliminar([[${ova.idOva}]])" class="btn btn-danger">Eliminar</a>

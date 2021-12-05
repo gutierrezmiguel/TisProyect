@@ -66,11 +66,9 @@ public class Ova {
     @Column(name = "rights")
     private String rights;
 
-    @Column(name = "rating")
-    private String rating;
-
-    @Column(name = "ova")
-    private String ova;
+    @Column(name = "ovaFile")
+    @Lob
+    private byte[] ovaFile;
 
 
 }

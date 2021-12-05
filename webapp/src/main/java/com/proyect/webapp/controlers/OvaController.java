@@ -39,7 +39,7 @@ public class OvaController {
         return "form";
     }
     @PostMapping("/save")
-    public String save(@Validated Ova o, Model model){
+    public String save(Ova o, Model model){
         iOva.save(o);
         return "redirect:/listar";
     }
