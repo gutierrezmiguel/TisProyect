@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Repository
-public interface OvaRepository extends CrudRepository<Ova, Integer> {
+public interface OvaRepository extends CrudRepository<Ova, Long> {
 
 }

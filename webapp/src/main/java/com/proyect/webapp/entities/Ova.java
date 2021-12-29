@@ -19,7 +19,7 @@ public class Ova {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idOva")
-    private Integer idOva;
+    private Long idOva;
 
     @Column(name = "title")
     private String title;
@@ -65,6 +65,9 @@ public class Ova {
 
     @Column(name = "rights")
     private String rights;
+
+    @Column(name = "link")
+    private String ovaLink;
 
     @Column(name = "ovaFile")
     @Lob

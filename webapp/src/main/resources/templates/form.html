@@ -28,6 +28,14 @@
               <div class="card-body">
                 <div class="row">
                   <div class="col-4 form-group">
+                    <div class="form-group">
+                    <input
+                            th:field="*{idOva}"
+                            type="number"
+                            class="form-control"
+                            hidden
+                    />
+                  </div>
                     <label>Title</label>
                     <input
                       th:field="*{title}"
@@ -166,8 +174,11 @@
                 </div>
               </div>
               <div class="card-footer bg-transparent">
-                <button type="submit" class="btn btn-success btn-guardar mt-3">
+                <button type="submit" class="btn btn-success btn-guardar mt-3" th:if="${idOva == null}">
                   <strong>Crear</strong>
+                </button>
+                <button type="submit" class="btn btn-warning  btn-guardar mt-3" th:if="${idOva != null}">
+                  <strong>Editar</strong>
                 </button>
               </div>
             </div>
