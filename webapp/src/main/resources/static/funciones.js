@@ -1,7 +1,7 @@
 function eliminar(id){
     swal({
-        title: "esta seguro que desea eliminarlo?",
-        text: " no se puede revertir",
+        title: "¿Está seguro que desea eliminarlo?",
+        text: "esta acción no se puede revertir",
         icon: "warning",
         buttons: true,
         dangerMode: true,
@@ -14,7 +14,7 @@ function eliminar(id){
                             console.log(response);
                         }
                 });
-                swal("Has borrado tu Ova", {
+                swal("El ova ha sido eliminado satisfactoriamente", {
                     icon: "success",
                 }).then((ok)=>{
                     if (ok){
@@ -22,7 +22,7 @@ function eliminar(id){
                     }
                 });
             } else {
-                swal("tu ova no ha sido borrado");
+                swal("Operación cancelada");
             }
         });
 }

@@ -1,94 +1,190 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-</head>
-<body>
-<div class="container mt-4">
-    <div class="col-sm-6">
-        <form th:action="@{/save}" th:object="${ova}" method="POST">
-            <div class="card">
-                <div class="card-header">
-                    <h3>Modulo Ova</h3>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Crear Ova</title>
+    <link rel="stylesheet" href="css/form.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <div class="contenedor-principal">
+      <nav class="navbar sticky-top navbar-dark bg-dark">
+        <a th:href="@{/listar}" class="link"
+          ><div class="btn-listar">Listar Ovas</div></a
+        >
+      </nav>
+      <div class="container mt-4">
+        <div class="col-12">
+          <form th:action="@{/save}" th:object="${ova}" method="POST">
+            <div class="card shadow p-3 mb-5 bg-white rounded">
+              <div class="card-header bg-transparent">
+                <h1 class="text-center">CREAR OVA</h1>
+              </div>
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-4 form-group">
+                    <div class="form-group">
+                    <input
+                            th:field="*{idOva}"
+                            type="number"
+                            class="form-control"
+                            hidden
+                    />
+                  </div>
+                    <label>Title</label>
+                    <input
+                      th:field="*{title}"
+                      type="text"
+                      class="form-control"
+                    />
+                  </div>
+                  <div class="col-4 form-group">
+                    <label>Creator</label>
+                    <input
+                      th:field="*{creator}"
+                      type="text"
+                      class="form-control"
+                    />
+                  </div>
+                  <div class="col-4 form-group">
+                    <label>Subject</label>
+                    <input
+                      th:field="*{subject}"
+                      type="text"
+                      class="form-control"
+                    />
+                  </div>
                 </div>
-                <div class="card-body">
-                    <div class="form-group">
-                        <label>idOva</label>
-                        <input th:field="*{idOva}" type="text" readonly/>
-                    </div>
-                    <div class="form-group">
-                        <label>title</label>
-                        <input th:field="*{title}" type="text" class="form-control"/>
-                    </div>
-                    <div class="form-group">
-                        <label>creator</label>
-                        <input th:field="*{creator}" type="text" class="form-control"/>
-                    </div>
-                    <div class="form-group">
-                        <label>subject</label>
-                        <input th:field="*{subject}" type="text" class="form-control"/>
-                    </div>
-                    <div class="form-group">
-                        <label>description</label>
-                        <input th:field="*{description}" type="text" class="form-control"/>
-                    </div>
-                    <div class="form-group">
-                        <label>publisher</label>
-                        <input th:field="*{publisher}" type="text" class="form-control"/>
-                    </div>
-                    <div class="form-group">
-                        <label>contributor</label>
-                        <input th:field="*{contributor}" type="text" class="form-control"/>
-                    </div>
-                    <div class="form-group">
-                        <label>date</label>
-                        <input th:field="*{date}" type="date" class="form-control"/>
-                    </div>
-                    <div class="form-group">
-                        <label>type</label>
-                        <input th:field="*{type}" type="text" class="form-control"/>
-                    </div>
-                    <div class="form-group">
-                        <label>format</label>
-                        <input th:field="*{format}" type="text" class="form-control"/>
-                    </div>
-                    <div class="form-group">
-                        <label>identifier</label>
-                        <input th:field="*{identifier}" type="text" class="form-control"/>
-                    </div>
-                    <div class="form-group">
-                        <label>source</label>
-                        <input th:field="*{source}" type="text" class="form-control"/>
-                    </div>
-                    <div class="form-group">
-                        <label>language</label>
-                        <input th:field="*{language}" type="text" class="form-control"/>
-                    </div>
-                    <div class="form-group">
-                        <label>relation</label>
-                        <input th:field="*{relation}" type="text" class="form-control"/>
-                    </div>
-                    <div class="form-group">
-                        <label>coverage</label>
-                        <input th:field="*{coverage}" type="text" class="form-control"/>
-                    </div>
-                    <div class="form-group">
-                        <label>rights</label>
-                        <input th:field="*{rights}" type="text" class="form-control"/>
-                    </div>
-                    <div class="form-group">
-                        <label>rating</label>
-                        <input th:field="*{ovaFile}" type="file" class="form-control"/>
-                    </div>
+                <div class="row">
+                  <div class="col-4 form-group">
+                    <label>Publisher</label>
+                    <input
+                      th:field="*{publisher}"
+                      type="text"
+                      class="form-control"
+                    />
+                  </div>
+                  <div class="col-4 form-group">
+                    <label>Contributor</label>
+                    <input
+                      th:field="*{contributor}"
+                      type="text"
+                      class="form-control"
+                    />
+                  </div>
+                  <div class="col-4 form-group">
+                    <label>Date</label>
+                    <input
+                      th:field="*{date}"
+                      type="date"
+                      class="form-control"
+                    />
+                  </div>
                 </div>
-                <div class="card-footer">
-                    <input type="submit" value="Guardar" class="btn btn-success">
+                <div class="row">
+                  <div class="col-4 form-group">
+                    <label>Type</label>
+                    <input
+                      th:field="*{type}"
+                      type="text"
+                      class="form-control"
+                    />
+                  </div>
+                  <div class="col-4 form-group">
+                    <label>Format</label>
+                    <input
+                      th:field="*{format}"
+                      type="text"
+                      class="form-control"
+                    />
+                  </div>
+                  <div class="col-4 form-group">
+                    <label>Identifier</label>
+                    <input
+                      th:field="*{identifier}"
+                      type="text"
+                      class="form-control"
+                    />
+                  </div>
                 </div>
+                <div class="row">
+                  <div class="col-4 form-group">
+                    <label>Source</label>
+                    <input
+                      th:field="*{source}"
+                      type="text"
+                      class="form-control"
+                    />
+                  </div>
+                  <div class="col-4 form-group">
+                    <label>Language</label>
+                    <input
+                      th:field="*{language}"
+                      type="text"
+                      class="form-control"
+                    />
+                  </div>
+                  <div class="col-4 form-group">
+                    <label>Relation</label>
+                    <input
+                      th:field="*{relation}"
+                      type="text"
+                      class="form-control"
+                    />
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-6 form-group">
+                    <label>Coverage</label>
+                    <input
+                      th:field="*{coverage}"
+                      type="text"
+                      class="form-control"
+                    />
+                  </div>
+                  <div class="col-6 form-group">
+                    <label>Rights</label>
+                    <input
+                      th:field="*{rights}"
+                      type="text"
+                      class="form-control"
+                    />
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label>Description</label>
+                  <textarea
+                    th:field="*{description}"
+                    type="text"
+                    class="form-control"
+                  ></textarea>
+                </div>
+                <div class="col-6 form-group">
+                  <label>Cargar Ova</label>
+                  <input
+                    th:field="*{ovaFile}"
+                    type="file"
+                    class="form-control"
+                  />
+                </div>
+              </div>
+              <div class="card-footer bg-transparent">
+                <button type="submit" class="btn btn-success btn-guardar mt-3" th:if="${idOva == null}">
+                  <strong>Crear</strong>
+                </button>
+                <button type="submit" class="btn btn-warning  btn-guardar mt-3" th:if="${idOva != null}">
+                  <strong>Editar</strong>
+                </button>
+              </div>
             </div>
-        </form>
+          </form>
+        </div>
+      </div>
     </div>
-</div>
-</body>
+  </body>
 </html>

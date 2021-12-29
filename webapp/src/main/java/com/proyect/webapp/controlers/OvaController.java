@@ -45,14 +45,14 @@ public class OvaController {
     }
 
     @GetMapping("/editar/{idOva}")
-    public String editar(@PathVariable int idOva, Model model) {
+    public String editar(@PathVariable Long idOva, Model model) {
         Optional<Ova> ova = iOva.listarid(idOva);
         model.addAttribute("ova",ova);
         return "form";
     }
 
     @GetMapping("/eliminar/{idOva}")
-    public String eliminar(@PathVariable int idOva, Model model) {
+    public String eliminar(@PathVariable Long idOva, Model model) {
         iOva.delete(idOva);
         return "redirect:/listar";
     }
