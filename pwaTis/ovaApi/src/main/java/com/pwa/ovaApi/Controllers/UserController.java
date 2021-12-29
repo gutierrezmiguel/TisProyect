@@ -1,5 +1,6 @@
 package com.pwa.ovaApi.Controllers;
 
+import com.pwa.ovaApi.Entities.Dto.LoginUser;
 import com.pwa.ovaApi.Entities.User;
 import com.pwa.ovaApi.Services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,5 +41,13 @@ public class UserController {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
         return new ResponseEntity<>(user.get(),HttpStatus.OK);
+    }
+    @PostMapping(path = "/login")
+    public ResponseEntity<User> login(@RequestBody LoginUser loginUser){
+        Optional<User> userByPassword = userService.login(loginUser);
+        if (userByPassword.isEmpty()){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        return  new ResponseEntity<>(userByPassword.get(),HttpStatus.OK);
     }
 }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { UserResponse } from 'src/app/models/user.interface';
+import { Login, UserResponse } from 'src/app/models/user.interface';
 import { AuthService } from 'src/app/services/auth.service';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-auth',
@@ -9,19 +10,39 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class AuthComponent implements OnInit {
 
-  constructor(private authService : AuthService) { }
+  constructor(private authService : AuthService,
+              private formbuilder : FormBuilder) { }
 
   user !: UserResponse;
-
   
+  loginForm !: FormGroup;
+
+  login : Login = {username: '',
+                   password:''};
 
   ngOnInit(): void {
-    this.authService.getUser(1).subscribe(
+    this.authService.getUser(0).subscribe(
       (user => {
         this.user = user;
         console.log(user);
       })
+      
     )
+    this.loginForm = this.formbuilder.group({
+      username:'',
+      password:''
+    })
+  }
+
+  onLogin(): void {    
+    this.login.username = this.loginForm.get('username')?.value
+    this.login.password = this.loginForm.get('password')?.value
+    this.authService.logIn(this.login).subscribe(
+      (res => {
+        console.log(res)
+      })
+    )
+
   }
 
 

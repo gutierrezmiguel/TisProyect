@@ -1,8 +1,16 @@
-<mat-card>
-  <mat-card-title-group>
-    <mat-card-title>{{ user.idUser }}</mat-card-title>
-    <mat-card-subtitle> {{ user.username }} </mat-card-subtitle>
-    <mat-card-content> {{ user.password }}</mat-card-content>
-  </mat-card-title-group>
-  <
-</mat-card>
+<div class="login-form">
+  <mat-card>
+    <mat-card-title>LOGIN</mat-card-title>
+    <mat-card-content>
+      <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+        <mat-form-field>
+          <input matInput formControlName="username" type="text" id="username" placeholder="Usuario">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput formControlName="password" type="text" id="password" placeholder="Contraseña">
+        </mat-form-field>        
+        <button type="submit" mat-raised-button>Ingresar</button>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>

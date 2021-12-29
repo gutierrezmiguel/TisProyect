@@ -1,5 +1,6 @@
 package com.pwa.ovaApi.Services;
 
+import com.pwa.ovaApi.Entities.Dto.LoginUser;
 import com.pwa.ovaApi.Entities.User;
 import com.pwa.ovaApi.Interfaces.IUser;
 import com.pwa.ovaApi.Repositories.UserRepository;
@@ -37,5 +38,11 @@ public class UserService implements IUser {
     @Override
     public Optional<User> getUserById(Long idUser) {
        return userRepository.findById(idUser);
+    }
+
+    @Override
+    public Optional<User> login(LoginUser user) {
+        Optional<User> userByPassword = userRepository.getUserByUsernameAndPassword(user.getUsername(),user.getPassword());
+        return userByPassword;
     }
 }
