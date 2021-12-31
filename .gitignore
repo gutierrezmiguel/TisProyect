@@ -1,0 +1,4 @@
+# ENV #
+.idea/workspace.xml
+webapp/src/main/resources/application.properties
+pwaTis/ovaApi/src/main/resources/application.properties
