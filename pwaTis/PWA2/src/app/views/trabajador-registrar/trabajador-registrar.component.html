@@ -1,0 +1,131 @@
+<div class="animated fadeIn contenedor">
+  <div class="col-xl-12 mb-lg-8 mb-sm-4 mb-2">
+    <div class="card">
+      <div class="card-header">Registrar Trabajador</div>
+      <div class="card-body">
+        <div class="formulario-registro-trabajador">
+          <form autocomplete="off" [formGroup]="registrarTrabajadorForm">
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text"><i class="cil-user"></i></span>
+              </div>
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Nombre"
+                autocomplete="username"
+                formControlName="nombre"
+                required
+              />
+            </div>
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text"><i class="cil-user"></i></span>
+              </div>
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Apellido"
+                autocomplete="apellido"
+                formControlName="apellido"
+                required
+              />
+            </div>
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text"><i class="cil-user"></i></span>
+              </div>
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Cedula"
+                autocomplete="cedula"
+                formControlName="cedula"
+                required
+              />
+            </div>
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text"><i class="cil-location-pin"></i></span>
+              </div>
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Dirección"
+                autocomplete="address"
+                formControlName="direccion"
+                required
+              />
+            </div>
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text"><i class="cil-mobile"></i></span>
+              </div>
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Celular"
+                autocomplete="celular"
+                formControlName="celular"
+                required
+              />
+            </div>
+
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text"><i class="icon-lock"></i></span>
+              </div>
+              <input
+                type="password"
+                class="form-control"
+                placeholder="Contraseña"
+                formControlName="contrasena"
+                autocomplete="new-password"
+                formControlName="contrasena"
+                required
+              />
+            </div>
+
+            <div class="input-group mb-4">
+              <div class="input-group-prepend">
+                <span class="input-group-text"><i class="icon-lock"></i></span>
+              </div>
+              <input
+                type="password"
+                class="form-control"
+                placeholder="Confirmar contraseña"
+                formControlName="c_contrasena"
+                autocomplete="new-password"
+                required
+              />
+            </div>
+
+            <div class="p-2 label-cargo" align=center>
+              SELECCIONE UN CARGO:
+            </div>
+            <div class="input-group mb-5 boostrap-select">
+              <select formControlName="cargo" class="form-select" aria-label="Default select example">
+                <option  *ngFor="let puestoLista of puestos"
+                [value]= "puestoLista.puesto_nombre"
+                >
+                {{ puestoLista.puesto_nombre }}</option>
+              </select>
+            </div>
+
+            <button
+              type="button"
+              class="btn btn-block btn-success"
+              (click)="registrarTrabajador()"
+              [disabled]="!registrarTrabajadorForm.valid"
+            >
+              Registrar
+            </button>
+            <button type="button"  class="btn btn-block btn-danger">
+              Cancelar
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

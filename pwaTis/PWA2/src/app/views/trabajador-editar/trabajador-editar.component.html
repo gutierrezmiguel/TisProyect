@@ -1,0 +1,151 @@
+<div class="animated fadeIn contenedor">
+  <div class="col-xl-12 mb-lg-8 mb-sm-4 mb-2">
+    <div class="card">
+      <div class="card-header">Actualizar Trabajador</div>
+      <div class="card-body">
+        <div class="formulario-actualizar-trabajador">
+          <form autocomplete="off" [formGroup]="editarTrabajadorForm">
+
+            
+
+            <!-- Nombre -->
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text"
+                  ><i class="icon-user"></i
+                ></span>
+              </div>
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Nombre"
+                autocomplete="username"
+                formControlName="nombre"
+              />
+            </div>
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text"
+                  ><i class="cil-building"></i
+                ></span>
+              </div>
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Apellido"
+                autocomplete="apellido"
+                formControlName="apellido"
+              />
+            </div>
+
+        
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text"
+                  ><i class="cil-phone"></i
+                ></span>
+              </div>
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Cedula"
+                autocomplete="cedula"
+                formControlName="cedula"
+              />
+            </div>
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text"
+                  ><i class="cil-industry"></i
+                ></span>
+              </div>
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Celular"
+                autocomplete="celular"
+                formControlName="celular"
+              />
+            </div>
+
+            <div class="input-group mb-3" *ngIf="!admin">
+              <div class="input-group-prepend">
+                <span class="input-group-text"
+                  ><i class="cil-industry"></i
+                ></span>
+              </div>
+              <input
+                type="text"
+                class="form-control"
+                placeholder="cargo"
+                autocomplete="cargo"
+                formControlName="cargo"
+              />
+            </div>
+
+            <div class="input-group mb-3" *ngIf="admin">
+              <div class="input-group-prepend">
+                <span class="input-group-text"
+                  ><i class="icon-lock"></i
+                ></span>
+              </div>
+              <input
+                type="password"
+                class="form-control"
+                placeholder="Contraseña"
+                formControlName="contrasena"
+                autocomplete="new-password"
+                formControlName="contrasena"
+              />
+            </div>
+
+            <div class="p-1 label-cargo" align=center>
+              CARGO:
+            </div>
+
+            <div class="input-group mb-3" *ngIf="admin">
+              <div class="input-group mb-3">
+                <div class="input-group boostrap-select">
+                  <select formControlName="cargo" class="form-select select-bt" aria-label="Default select example">
+                    <option  *ngFor="let puestoLista of puestos"
+                    [value]= "puestoLista.puesto_nombre"
+                    >
+                    {{ puestoLista.puesto_nombre }}</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+
+            <!-- Obra asignada  -->
+            <table style='width:100%'>
+              <p class= "ml-1">OBRA ASIGNADA:</p>
+              <div class="input-group mb-3 select-div">
+                <select formControlName="obra" class="form-select mb-5 select-obra" data-live-search="true" aria-label="Default select example">
+                  <option  *ngFor="let obra of obrasLista"
+                  [value]= "obra.id"
+                  [selected]="obra==obra.id ? true : false"
+                  >
+                {{obra.nombre}}</option>
+                </select>
+              </div>
+            </table>
+
+            <button
+              (click)="editarTrabajador()"
+              type="button"
+              [disabled]="!editarTrabajadorForm.valid"
+              class="btn btn-block btn-primary"
+            >
+              Actualizar
+            </button>
+
+            <button type="button" [routerLink]="['/admin/listarTrabajadores']" class="btn btn-block btn-danger">
+              Cancelar
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

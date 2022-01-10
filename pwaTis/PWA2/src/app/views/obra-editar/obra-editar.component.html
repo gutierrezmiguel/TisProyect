@@ -1,0 +1,103 @@
+<div class="animated fadeIn contenedor">
+  <div class="col-xl-12 mb-lg-8 mb-sm-4 mb-2">
+    <div class="card">
+      <div class="card-header">Actualizar Obra</div>
+      <div class="card-body">
+        <div class="formulario-actualizar-obra">
+          <form autocomplete="off" [formGroup]="editarObraForm">
+            <!-- Nombre -->
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text"><i class="icon-user"></i></span>
+              </div>
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Nombre"
+                autocomplete="username"
+                formControlName="nombre"
+              />
+            </div>
+
+            <!-- Direccion -->
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text"
+                  ><i class="cil-building"></i
+                ></span>
+              </div>
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Direccion"
+                autocomplete="direccion"
+                formControlName="direccion"
+              />
+            </div>
+
+            <!-- Ciudad -->
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text"><i class="cil-phone"></i></span>
+              </div>
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Ciudad"
+                autocomplete="ciudad"
+                formControlName="ciudad"
+              />
+            </div>
+
+            <!-- Latitud -->
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text"
+                  ><i class="cil-industry"></i
+                ></span>
+              </div>
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Latitud"
+                autocomplete="latitud"
+                formControlName="latitud"
+              />
+            </div>
+
+            <!-- Longitud -->
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text"
+                  ><i class="cil-industry"></i
+                ></span>
+              </div>
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Longitud"
+                autocomplete="longitud"
+                formControlName="longitud"
+              />
+            </div>
+
+            <button
+              [routerLink]="['/admin/listarObras']"
+              (click)="editarObra()"
+              type="button"
+              [disabled]="!editarObraForm.valid"
+              class="btn btn-block btn-primary"
+            >
+              Actualizar
+            </button>
+
+            <button type="button" class="btn btn-block btn-danger">
+              Cancelar
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

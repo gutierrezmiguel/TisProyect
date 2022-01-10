@@ -1,0 +1,106 @@
+<div class="animated fadeIn contenedor">
+  <div class="col-xl-12 mb-lg-8 mb-sm-4 mb-2">
+    <div class="card">
+      <div class="card-header">Registrar Evidencia</div>
+      <div class="card-body">
+        <div class="formulario-evidencia-obra">
+          <form autocomplete="off" [formGroup]="registrarEvidenciaForm">
+
+            <div class="input-group mb-3 mt-4">
+              <div class="input-group-prepend">
+                <span class="input-group-text"><i class="cil-justify-left"></i></span>
+              </div>
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Descripción"
+                autocomplete="descripcion"
+                formControlName="descripcion"
+                required
+              />
+            </div>
+
+
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text"
+                  ><i class="cil-building"></i
+                ></span>
+              </div>
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Enlace"
+                formControlName="enlace"
+                required
+              />
+            </div>
+
+            <div class="text-left ml-2 mb-2 mt-3">
+              <p>TIPO DE EVIDENCIA:</p>
+            </div>
+
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <div class="custom-control custom-radio mb-3">
+                      <input
+                        formControlName="tipo"
+                        name="tipo"
+                        class="custom-control-input"
+                        id="radioEvidenciaAudio"
+                        value="2"
+                        type="radio"
+                      />
+                      <label
+                        class="custom-control-label"
+                        for="radioEvidenciaAudio"
+                        >Audio</label
+                      >
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <div class="custom-control custom-radio mb-3">
+                      <input
+                        formControlName="tipo"
+                        name="tipo"
+                        class="custom-control-input"
+                        id="radioEvidenciaImagen"
+                        value="1"
+                        type="radio"
+                      />
+                      <label
+                        class="custom-control-label"
+                        for="radioEvidenciaImagen"
+                        >Imagen</label
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            <div class="mb-4 center">
+              <app-mapa [latitud]="latitud" [mapa]="mapa" [longitud]="longitud" [zoom]=10>
+              </app-mapa>
+            </div>
+
+            <button
+              type="button"
+              class="btn btn-block btn-success"
+              (click)="registrarEvidencia()"
+              [disabled]="!registrarEvidenciaForm.valid"
+            >
+              Registrar Evidencia
+            </button>
+            <button type="button" [routerLink]="['/trabajador/listarEvidenciasclass']" class="btn btn-block btn-danger">
+              Cancelar
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

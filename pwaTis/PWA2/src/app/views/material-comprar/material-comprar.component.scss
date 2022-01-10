@@ -1,0 +1,66 @@
+.h-registro{
+    color: #051f34;
+    font-weight: 500;
+    font-size: 300%
+}
+
+
+
+ 
+ .mat-form-field {
+    background-color: #f4f5f5;
+    border-left: 10px solid #f4f5f5 ;
+    border-right: 10px solid #f4f5f5 ;
+    border-bottom: 5px solid #f4f5f5 ;
+    border-radius: 8px;
+    width: 100%;
+    color: red;
+    height: 50%;
+    
+}
+
+
+::ng-deep .mat-select-value{    
+     
+    font-size: 120%;
+    font-style:italic;
+    height: 10%;
+    color: black!important;
+    font-style: inherit;
+
+}
+
+
+.altura{
+    height: 50px;
+    color: black;
+    background-color: #f4f5f5;
+}
+
+
+.label-vehiculo{
+    color: #172b4d;
+    font-weight:600;
+    font-size: 200;
+}
+
+
+ .botonActualizar{
+    background-color: #172b4d;
+    color:#E3E4BC;
+    font-weight: normal;
+
+}
+
+ .botonRegistrar{
+    background-color: #2dce89;
+    color:#172b4d;
+    font-weight: normal;
+
+}
+
+.bg-gradient-blanco
+{
+    background-color: white;
+    //background: linear-gradient(180deg, #bad6db 0, #fff 100%) !important;
+}

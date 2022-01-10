@@ -1,0 +1,54 @@
+<div class="animated fadeIn contenedor">
+  <div class="col-xl-12 mb-lg-8 mb-sm-4 mb-2">
+    <div class="card">
+      <div class="card-header">Solicitar Material</div>
+      <div class="card-body">
+        <div class="formulario-solicitar-material">
+          <form autocomplete="off" [formGroup]="solicitarMaterialForm">
+            
+            <p class="text-muted" align="center">SELECCIONE UN MATERIAL:</p>
+            <div class="material-select">
+              
+              <select
+                formControlName="material"
+                class="form-select"
+                aria-label="Default select example"
+              >
+                <option
+                  *ngFor="let materialLista of materiales"
+                  [value]="materialLista.material_id"
+                >
+                  {{ materialLista.material_nombre }}
+                </option>
+              </select>
+            </div>
+
+          
+            <p class="text-muted" align="center">CANTIDAD:</p>
+            <div class="input-unidades">
+              <input
+                type="number"
+                class="form-control"
+                placeholder="Unidades"
+                autocomplete="unidades"
+                formControlName="unidades"
+                required
+              />
+            </div>
+            <button
+              type="button"
+              class="btn btn-block btn-success"
+              (click)="solicitarMaterial()"
+              [disabled]="!solicitarMaterialForm.valid"
+            >
+              Realizar soliciud
+            </button>
+            <button type="button" class="btn btn-block btn-danger">
+              Cancelar
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

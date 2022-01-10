@@ -1,0 +1,153 @@
+<div class="animated fadeIn contenedor">
+  <div class="col-xl-12 mb-lg-8 mb-sm-4 mb-2">
+    <div class="card">
+      <div class="card-header">Registrar Cliente</div>
+      <div class="card-body">
+        <div class="formulario-registro-cliente">
+          <form autocomplete="off" [formGroup]="registrarClienteForm">
+
+
+            <!-- NIT -->
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text"
+                  ><i class="cil-user"></i
+                ></span>
+              </div>
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Nit"
+                autocomplete="nit"
+                formControlName="numero_nit"
+                required
+              />
+            </div>
+
+            <!-- NOMBRE -->
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text"
+                  ><i class="cil-user"></i
+                ></span>
+              </div>
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Nombre"
+                autocomplete="username"
+                formControlName="nombre"
+                required
+              />
+            </div>
+
+            <!-- APELLIDO -->
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text"
+                  ><i class="cil-user"></i
+                ></span>
+              </div>
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Apellido"
+                autocomplete="apellido"
+                formControlName="apellido"
+                required
+              />
+            </div>
+
+            <!-- CORREO -->
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text"
+                  ><i class="cil-user"></i
+                ></span>
+              </div>
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Correo"
+                autocomplete="correo"
+                formControlName="correo"
+                required
+              />
+            </div>
+
+              <!-- DIRECCION -->
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text"
+                  ><i class="cil-location-pin"></i
+                ></span>
+              </div>
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Dirección"
+                autocomplete="address"
+                formControlName="direccion"
+                required
+              />
+            </div>
+          
+            <!-- CARGO -->
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text"
+                  ><i class="cil-badge"></i
+                ></span>
+              </div>
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Cargo"
+                formControlName="cargo"
+                autocomplete="new-password"
+                formControlName="cargo"
+                required
+              />
+            </div>
+
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text"
+                  ><i class="icon-lock"></i
+                ></span>
+              </div>
+              <input
+                type="password"
+                class="form-control"
+                placeholder="Contraseña"
+                formControlName="contrasena"
+                autocomplete="new-password"
+                formControlName="contrasena"
+                required
+              />
+            </div>
+            
+            <ng-container *ngIf="registroCliente">
+              <button
+                type="button"
+                class="btn btn-block btn-success"
+                (click)="registrarCliente()"
+                [disabled]="!registrarClienteForm.valid"
+              >
+                Registrar
+              </button>
+            </ng-container>
+            <ng-container *ngIf="edicion">
+              <button type="button" class="btn btn-block btn-primary">
+                Actualizar
+              </button>
+            </ng-container>
+            <button type="button" class="btn btn-block btn-danger">
+              Cancelar
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,134 @@
+<div class="animated fadeIn contenedor">
+  <div class="col-xl-12 mb-lg-8 mb-sm-4 mb-2">
+    <div class="card">
+      <div class="card-header">Registrar Obra</div>
+      <div class="card-body">
+        <div class="formulario-registro-obra">
+          <form autocomplete="off" [formGroup]="registrarObraForm">
+            
+            <!-- input de dirección -->
+            <p> Direccion: </p>
+            <div class="direccion">
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"
+                    ><i class="cil-map"></i
+                  ></span>
+                </div>
+                <input
+                  formControlName="direccion_obra"
+                  ngx-google-places-autocomplete
+                  [options]="options"
+                  #placesRef="ngx-places"
+                  (onAddressChange)="handleAddressChange($event)"
+                />
+              </div>
+            </div>
+
+            <!-- input del nombre -->
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text"
+                  ><i class="cil-factory"></i
+                ></span>
+              </div>
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Nombre de la obra"
+                autocomplete="nombre"
+                formControlName="nombre_obra"
+                required
+              />
+            </div>
+
+            
+            <!-- input de ciudad -->
+
+           
+            <p> Ciudad: </p>
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text"
+                  ><i class="cil-location-pin"></i
+                ></span>
+              </div>
+              <input
+                  formControlName="ciudad_obra"
+                  ngx-google-places-autocomplete
+                  [options]="options"
+                  #placesRef="ngx-places"
+                  (onAddressChange)="handleAddressChangeCity($event)"
+                />
+            </div>
+
+            <div class="mb-4 center">
+              <div class="mapa" id="map"></div>
+            </div>
+
+            <table class="ubicacion-table">
+              <th>
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"
+                      ><i class="cil-compass"></i
+                    ></span>
+                  </div>
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Latitud"
+                    autocomplete="latitud_obra"
+                    formControlName="latitud"
+                    required
+                  />
+                </div>
+              </th>
+              <th>
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"
+                      ><i class="cil-compass"></i
+                    ></span>
+                  </div>
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="longitud"
+                    autocomplete="longitud_obra"
+                    formControlName="longitud"
+                    required
+                  />
+                </div>
+              </th>
+            </table>
+
+            <div class="p-3 label-cliente" align=center>
+              SELECCIONE UN CLIENTE:
+            </div>
+
+            <div class="input-group mb-3 boostrap-select">
+              <select formControlName="cliente_obra" class="form-select select-bt" aria-label="Default select example">
+                <option  *ngFor="let clienteLista of clientes"
+                [value]= "clienteLista.cliente_id"
+                >
+                {{ clienteLista.cliente_nombre }}</option>
+              </select>
+            </div>
+            <button
+              type="button"
+              class="btn btn-block btn-success"
+              (click)="registrarObra()"
+              [disabled]="!registrarObraForm.valid"
+            >
+              Añadir Obra
+            </button>
+            <button type="button" [routerLink]="['/admin/listarObras']"class="btn btn-block btn-danger">
+              Cancelar
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,126 @@
+$fuente: Arial,
+Helvetica,
+sans-serif;
+
+$color-headers: rgb(27, 27, 31);
+
+$breakpoint-tablet: 768px;
+
+$breakpoint-cel: 600px;
+
+
+::ng-deep .formulario-registro-trabajador {
+  margin: 20px;
+}
+
+.card {
+  margin: 30px;
+  border-radius: 1em;
+  background-color: #f1f1f1;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
+    0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+  .card-header {
+    text-align: center;
+    width: 100%;
+    color: #ffffff;
+    font-family: $fuente;
+    font-size: 50px;
+    background-color: $color-headers;
+  }
+}
+
+.label-cargo{
+  font-size: 18px;
+  font-family: $fuente;
+  font-weight: bold;
+}
+
+.boostrap-select{
+  padding:3px 0px 8px 0px;
+  text-align: center;
+  width: 100%;
+  select{
+    width:50%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+
+
+@media (max-width: $breakpoint-tablet) {
+  ::ng-deep .formulario-registro-trabajador {
+    margin: 25px;
+
+    //Filtrar
+    .mat-form-field {
+      width: 50%;
+      color: black;
+      margin: 0px 5px 20px 0px;
+    }
+  }
+}
+
+
+@media (max-width: $breakpoint-tablet) {
+  ::ng-deep .formulario-registro-trabajador {
+    margin: 25px;
+
+    //Filtrar
+    .mat-form-field {
+      width: 50%;
+      color: black;
+      margin: 0px 5px 20px 0px;
+    }
+  }
+
+  .card {
+    margin: 30px;
+    border-radius: 1em;
+    background-color: #f1f1f1;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
+      0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+    .card-header {
+      text-align: center;
+      width: 100%;
+      color: #ffffff;
+      font-family: $fuente;
+      font-size: 35px;
+      background-color: $color-headers;
+    }
+  }
+}
+
+@media (max-width: $breakpoint-cel) {
+  ::ng-deep .formulario-registro-trabajador {
+    margin: 25px;
+
+    //Filtrar
+    .mat-form-field {
+      width: 100%;
+      color: black;
+      margin: 0px 5px 20px 0px;
+    }
+  }
+
+  .card {
+    margin: 30px;
+    border-radius: 1em;
+    background-color: #f1f1f1;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
+      0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+    .card-header {
+      text-align: center;
+      width: 100%;
+      color: #ffffff;
+      font-family: $fuente;
+      font-size: 25px;
+      background-color: $color-headers;
+    }
+  }
+
+}
+
