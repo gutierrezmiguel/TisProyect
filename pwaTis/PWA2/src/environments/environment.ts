@@ -4,6 +4,6 @@
 // The list of which env maps to which file can be found in `.angular-cli.json`.
 
 export const environment = {
-  apiBaseUrl: 'https://construction-planning-backend.herokuapp.com',
+  apiBaseUrl: 'http://localhost:8080/user/',
   production: false
 };

@@ -4,7 +4,6 @@ import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
-import { PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
 import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
 
 import { IconModule, IconSetModule, IconSetService } from '@coreui/icons-angular';
@@ -51,10 +50,9 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 
 
 import { GooglePlaceModule } from 'ngx-google-places-autocomplete';
-import { TrabajadorLayoutComponent } from './layouts/trabajador-layout/trabajador-layout.component';
-import { ClienteLayoutComponent } from './layouts/cliente-layout/cliente-layout.component';
 import { AdministradorLayoutComponent } from './layouts/administrador-layout/administrador-layout.component';
-import { TrabajadorListarComponent } from './views/trabajador-listar/trabajador-listar.component';
+import { OvasCarouselComponent } from './views/ovas-carousel/ovas-carousel.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   imports: [
@@ -80,6 +78,7 @@ import { TrabajadorListarComponent } from './views/trabajador-listar/trabajador-
     MatTableModule,
     MatPaginatorModule,
     GooglePlaceModule,
+    NgbModule,
     
   ],
   declarations: [
@@ -88,10 +87,7 @@ import { TrabajadorListarComponent } from './views/trabajador-listar/trabajador-
     P404Component,
     P500Component,
     LoginComponent,
-    AdministradorLayoutComponent,
-    TrabajadorLayoutComponent,
-    ClienteLayoutComponent,
-    TrabajadorListarComponent
+    AdministradorLayoutComponent
   ],
   providers: [
     {
