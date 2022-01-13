@@ -6,7 +6,7 @@ import java.io.InputStream;
 
 public interface AWSS3Service {
 
-    void uploadFile(MultipartFile file);
+    String uploadFile(MultipartFile file);
     InputStream downloadFile(String key);
 
 

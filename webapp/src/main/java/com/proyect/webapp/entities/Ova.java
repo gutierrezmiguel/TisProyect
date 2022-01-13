@@ -69,9 +69,8 @@ public class Ova {
     @Column(name = "link")
     private String ovaLink;
 
-    @Column(name = "ovaFile")
-    @Lob
-    private byte[] ovaFile;
+    @Column(name = "keyS3")
+    private String keyS3;
 
 
 }
