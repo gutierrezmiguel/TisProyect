@@ -2,15 +2,13 @@ package com.proyect.webapp.controlers;
 
 import com.proyect.webapp.entities.Ova;
 import com.proyect.webapp.interfaces.IOva;
+import com.proyect.webapp.services.api.AWSS3Service;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+import com.proyect.webapp.services.api.AWSS3Service;
+import org.springframework.web.multipart.MultipartFile;
 
-import javax.swing.text.html.Option;
 import java.util.List;
 import java.util.Optional;
 
@@ -18,10 +16,13 @@ import java.util.Optional;
 @RequestMapping
 public class OvaController {
 
-    private final IOva iOva;
 
-    public OvaController(IOva iOva) {
+    private final IOva iOva;
+    private final AWSS3Service awss3Service;
+
+    public OvaController(IOva iOva, AWSS3Service awss3Service) {
         this.iOva = iOva;
+        this.awss3Service = awss3Service;
     }
 
     @GetMapping("/listar")
@@ -40,6 +41,7 @@ public class OvaController {
     }
     @PostMapping("/save")
     public String save(Ova o, Model model){
+        System.out.println("hola");
         iOva.save(o);
         return "redirect:/listar";
     }
@@ -56,5 +58,13 @@ public class OvaController {
         iOva.delete(idOva);
         return "redirect:/listar";
     }
+
+    @GetMapping("/fileS3/{idOva}")
+    public String fileS3(@PathVariable Long idOva, Model model) {
+        model.addAttribute("idova",idOva);
+        return "fileform";
+    }
+
+
 
 }

@@ -44,4 +44,10 @@ public class OvaService implements IOva {
     public void delete(Long id) {
         ovaRepository.deleteById(id);
     }
+
+    @Override
+    public void editkey(String key, Ova o) {
+        o.setKeyS3(key);
+        save(o);
+    }
 }
