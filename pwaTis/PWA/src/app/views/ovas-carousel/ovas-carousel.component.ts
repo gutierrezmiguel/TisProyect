@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Ova } from '../../../models/ova.interface';
+import { Router } from '@angular/router';
+import { Ova } from '../../models/ova.interface';
+import { OvaService } from '../../services/ova.service';
 
 
 
@@ -15,11 +17,26 @@ export class OvasCarouselComponent implements OnInit {
 
   images = [944, 1011, 984].map((n) => `https://picsum.photos/id/${n}/900/500`);
 
-  Ovas : any[]= [{name: 'pedro'},{name: 'carlos'},{name: 'carlos'},{name: 'carlos'},{name: 'carlos'}]
+  Ovas : Ova[];
 
-  constructor() { }
+  constructor(private router: Router, private ovaService: OvaService) { }
 
   ngOnInit(): void {
+
+    this.getOvas();
+    
+  }
+
+  getOvas(){
+
+    this.ovaService.getOvas().subscribe(
+      (response: any)=>{
+        this.Ovas = response;
+        console.log(response);
+        
+      }
+    )
+
   }
 
 }
