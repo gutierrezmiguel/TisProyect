@@ -38,11 +38,4 @@ public class AWSS3ServiceImpl implements AWSS3Service {
             return null;
         }
     }
-
-    @Override
-    public InputStream downloadFile(String key) {
-        S3Object object = amazonS3.getObject(bucketName, key);
-        return object.getObjectContent();
-    }
-
 }

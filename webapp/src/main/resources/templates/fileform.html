@@ -6,7 +6,6 @@
 </head>
 <body>
     <form method="POST"  th:action="@{/s3/upload/} + ${idova}" enctype="multipart/form-data">
-        <h1 th:text="${idova}"></h1>
         <div class="form-group">
             <input type="file" name="file" class="form-control-file">
         </div>
