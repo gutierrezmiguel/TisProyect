@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { User, UserResponse } from '../../models/user.interface';
+import { User, UserResponse } from '../../../models/user.interface';
 import { AuthService } from '../../services/auth.service';
 
 @Component({
@@ -23,8 +23,10 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
 
+    
+    
     if(localStorage.getItem('username')){
-        this.router.navigateByUrl('/dashboard')
+        this.router.navigateByUrl('/admin')
     }
     
       
@@ -38,13 +40,17 @@ export class LoginComponent implements OnInit {
       username  : this.credentialsForm.get('user')?.value,
       password  : this.credentialsForm.get('password')?.value
     }
+
+    console.log(credentials);
     
 
     this.authService.logIn(credentials).subscribe(
+      
       (response: UserResponse)=>{
         console.log(response);
         localStorage.setItem('username',response.username);
         localStorage.setItem('password',response.password);
+        this.router.navigateByUrl('/admin')
 
         
       }

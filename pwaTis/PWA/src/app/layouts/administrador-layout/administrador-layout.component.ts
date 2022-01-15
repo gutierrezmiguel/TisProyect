@@ -15,24 +15,10 @@ export class AdministradorLayoutComponent implements OnInit {
 
   ngOnInit(): void {
 
-    let log = localStorage.getItem("log");
-
-    if (log) {
-      if (localStorage.getItem("cliente")) {
-
-        this.router.navigateByUrl('/cliente')
-      }
-
-      else if (localStorage.getItem("obrero")) {
-        this.router.navigateByUrl('/trabajador')
-      }
-      else {
-      }
-
-    }
-    else {
-      this.router.navigateByUrl('/login')
-    }
+    
+    if(localStorage.getItem('username')){
+      this.router.navigateByUrl('/admin')
+  }
 
 
 
