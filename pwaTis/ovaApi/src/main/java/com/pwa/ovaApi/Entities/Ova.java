@@ -100,9 +100,8 @@ public class Ova {
     @Column(name = "link")
     private String ovaLink;
 
-    @Column(name = "ova_File")
-    @Lob
-    private byte[] ovaFile;
+    @Column(name = "keyS3")
+    private String keyS3;
 
     @JsonIgnore
     @OneToMany(mappedBy = "ova")
