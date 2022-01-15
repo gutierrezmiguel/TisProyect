@@ -11,4 +11,6 @@ public interface IOva {
     public Optional<Ova> listarid(Long id);
     public int save(Ova o);
     public void delete(Long id);
+    public void editkey(String key,Ova o);
 }
+

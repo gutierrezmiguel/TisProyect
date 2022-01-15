@@ -18,6 +18,7 @@
     />
   </head>
   <body>
+  <a th:href="@{/login}">Log In</a>
     <div class="contenedor-principal">
       <nav class="navbar sticky-top navbar-dark bg-dark">
         <a th:href="@{/new}" class="link"
@@ -74,6 +75,11 @@
                   class="btn btn-danger btn-actions"
                   ><i class="fas fa-trash"></i
                 ></a>
+                <a
+                  th:href="@{/fileS3/} + ${ova.idOva}"
+                  class="btn btn-primary btn-actions"
+                ><i class="fas fa-file-upload"></i>
+                </a>
               </td>
             </tr>
           </tbody>
