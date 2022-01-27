@@ -41,7 +41,6 @@ public class OvaController {
     }
     @PostMapping("/save")
     public String save(Ova o, Model model){
-        System.out.println("hola");
         iOva.save(o);
         return "redirect:/listar";
     }
