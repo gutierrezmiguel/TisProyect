@@ -2,8 +2,4 @@
 .idea/workspace.xml
 webapp/src/main/resources/application.properties
 pwaTis/ovaApi/src/main/resources/application.properties
-<<<<<<< HEAD
 pwaTis/pwaClient/node_modules
-=======
-pwaTis/pwaClient/node_modules
->>>>>>> Dev
