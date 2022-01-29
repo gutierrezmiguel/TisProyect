@@ -69,6 +69,9 @@ public class Ova {
     @Column(name = "link")
     private String ovaLink;
 
+    @Column(name = "rating")
+    private Double  rating ;
+
     @Column(name = "keyS3")
     private String keyS3;
 
