@@ -54,6 +54,7 @@ import { AdministradorLayoutComponent } from './layouts/administrador-layout/adm
 import { OvasCarouselComponent } from './views/ovas-carousel/ovas-carousel.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { OvaDetailsComponent } from './views/ova-details/ova-details.component';
+import { RegisterComponent } from './views/register/register.component';
 
 @NgModule({
   imports: [
@@ -88,7 +89,8 @@ import { OvaDetailsComponent } from './views/ova-details/ova-details.component';
     P404Component,
     P500Component,
     LoginComponent,
-    AdministradorLayoutComponent
+    AdministradorLayoutComponent,
+    RegisterComponent
     
   ],
   providers: [
