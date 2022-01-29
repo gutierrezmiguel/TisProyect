@@ -6,6 +6,7 @@ import { OvaService } from '../../services/ova.service';
 import { S3Service } from '../../services/s3.service';
 import { ScoreService } from '../../services/score.service';
 
+
 @Component({
   selector: 'app-ova-details',
   templateUrl: './ova-details.component.html',
@@ -23,12 +24,9 @@ export class OvaDetailsComponent implements OnInit {
   constructor(private ovaService: OvaService,private scoreService: ScoreService, private s3Service: S3Service, private aRoute: ActivatedRoute, private router : Router) { }
 
   ngOnInit(): void {
-
-     this.ova_id = Number(this.aRoute.snapshot.paramMap.get("id_ova"))
-     this.user_id = Number(localStorage.getItem("id"))
-
-     console.log(this.ova_id);
-     this.getOva(this.ova_id);
+    this.ova_id = Number(this.aRoute.snapshot.paramMap.get("id_ova"))
+    this.user_id = Number(localStorage.getItem("id"))
+    this.getOva(this.ova_id);
 
     
   }
@@ -38,8 +36,7 @@ export class OvaDetailsComponent implements OnInit {
       (response: any)=>{
         this.ova = response;
         console.log(this.ova);
-
-        console.log(this.ova.keyS3);
+        console.log(this.ova.ovaLink);
         
      this.downloadOva();
         

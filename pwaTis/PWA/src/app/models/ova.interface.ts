@@ -10,6 +10,7 @@ export interface Ova {
     ova_file : string,
     ova : string,
     link : string,
+    ovaLink : string,
     language : string,
     identifier : string,
     id_ova : number,

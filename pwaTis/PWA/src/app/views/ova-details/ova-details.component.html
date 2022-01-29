@@ -1,3 +1,89 @@
-<div *ngIf="ova_id">
-  <p>{{ova_id}}</p>
+<div class="container mt-3 p-2">
+  <div class="card text-center rounded-3 p-5">
+    <h3 class="text-left">Calificación: {{ ova.rating }}</h3>
+    <!-- IMAGEN -->
+    <ng-container *ngIf="ova.keyS3; else video">
+      <img
+        src="https://www.ccpixs.com/ccimages/m/vector-cloud-computing-download-m-1155.jpg"
+        class="card-img-top mb-2"
+        alt=""
+      />
+      <!-- boton descargar ova -->
+      <button (click)="downloadOva()" class="btn btn-success col-4">
+        DESCARGAR OVA
+      </button>
+    </ng-container>
+    <ng-template #video>
+      <ng-container *ngIf="ova.ovaLink; else default">
+        <a [href]="ova.ovaLink" target="_blank">
+          <img
+            src="../../assets/img/ovas/youtube.jpg"
+            class="card-img-top"
+            alt=""
+          />
+        </a>
+      </ng-container>
+    </ng-template>
+    <ng-template #default>
+      <img
+        src="../../assets/img/ovas/11070.jpg"
+        class="card-img-top p-5"
+        alt=""
+      />
+    </ng-template>
+    <!-- FIN IMAGEN -->
+
+    <!-- INFORMACION OVA -->
+    <h2 class="mt-4">INFORMACIÓN DEL OVA</h2>
+    <div class="row mt-3 m-2 text-left">
+      <div class="col-6">
+        <p>
+          <strong>Descripcion:</strong>
+          <span>
+            <i>{{ ova.description }}</i>
+          </span>
+        </p>
+      </div>
+      <div class="col-6">
+        <p>
+          <strong>Creador:</strong>
+          <span>
+            <i>{{ ova.creator }}</i>
+          </span>
+        </p>
+        <p>
+          <strong>Creador:</strong>
+          <span>
+            <i>{{ ova.creator }}</i>
+          </span>
+        </p>
+        <p>
+          <strong>Creador:</strong>
+          <span>
+            <i>{{ ova.creator }}</i>
+          </span>
+        </p>
+        <p>
+          <strong>Creador:</strong>
+          <span>
+            <i>{{ ova.creator }}</i>
+          </span>
+        </p>
+        <p>
+          <strong>Creador:</strong>
+          <span>
+            <i>{{ ova.creator }}</i>
+          </span>
+        </p>
+        <p>
+          <strong>Creador:</strong>
+          <span>
+            <i>{{ ova.creator }}</i>
+          </span>
+        </p>
+      </div>
+    </div>
+    <!-- FIN INFORMACION OVA -->
+    <div class="row"></div>
+  </div>
 </div>
