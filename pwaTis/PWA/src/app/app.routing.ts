@@ -38,7 +38,7 @@ export const routes: Routes = [
     }
   },
   {
-    path: 'admin',
+    path: 'Ovas',
     component: AdministradorLayoutComponent,
     loadChildren: () => import('./layouts/administrador-layout/administrador-layout.module').then(m => m.AdministradorLayoutModule)
 

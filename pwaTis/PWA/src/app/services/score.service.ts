@@ -6,22 +6,15 @@ import { environment } from '../../environments/environment';
 @Injectable({
     providedIn: 'root'
 })
-export class Score {
+export class ScoreService {
 
     baseUrl = environment.apiBaseUrl + 'score/'
 
     constructor(private http: HttpClient) { }
 
-    getScoreOva(id_ova): Observable<Number> {
-        return this.http.get<Number>(this.baseUrl + `avg/${id_ova}`);
-    }
 
     mergeScore(Score: any):Observable<any>{
         return this.http.post<any>(this.baseUrl + 'merge', Score);
-    }
-
-    getScoreByUserAndOva(id_ova,id_user): Observable<Number>{
-        return this.http.get<Number>(this.baseUrl +`${id_ova}`+`/${id_user}` )
     }
 
 
