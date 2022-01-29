@@ -17,5 +17,9 @@ export class OvaService {
     return this.http.get<Ova[]>(this.baseUrl + 'list');
   }
 
+  getOva(id_ova : number) : Observable<Ova>{
+    return this.http.get<Ova>(this.baseUrl + id_ova);
+  }
+
 
 }

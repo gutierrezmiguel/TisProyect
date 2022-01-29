@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { OvaDetailsComponent } from '../../views/ova-details/ova-details.component';
 import { OvasCarouselComponent } from '../../views/ovas-carousel/ovas-carousel.component';
 
 
@@ -7,8 +8,7 @@ export const routes: Routes = [{
   path:'',
   children:[
 
-     {path:'registrarObra',component: OvasCarouselComponent},
-     
+     {path:'details/:id_ova', component:OvaDetailsComponent},
      {path: '**', component: OvasCarouselComponent}
   ]
 

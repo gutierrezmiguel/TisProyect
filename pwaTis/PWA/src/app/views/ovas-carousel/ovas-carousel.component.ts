@@ -24,6 +24,9 @@ export class OvasCarouselComponent implements OnInit {
   ngOnInit(): void {
 
     this.getOvas();
+
+    
+    console.log(localStorage.getItem('id'));
     
   }
 
@@ -37,6 +40,11 @@ export class OvasCarouselComponent implements OnInit {
       }
     )
 
+  }
+
+  detallarOva(id_ova){
+    console.log("Detallando");
+    this.router.navigateByUrl("Ovas/details/" + id_ova)
   }
 
 }
