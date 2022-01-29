@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Ova } from '../../models/ova.interface';
 import { Score } from '../../models/score.interface';
 import { OvaService } from '../../services/ova.service';
+import { S3Service } from '../../services/s3.service';
 import { ScoreService } from '../../services/score.service';
 
 @Component({
@@ -19,7 +20,7 @@ export class OvaDetailsComponent implements OnInit {
   private user_id: number;
   private ova : Ova;
 
-  constructor(private ovaService: OvaService,private scoreService: ScoreService, private aRoute: ActivatedRoute, private router : Router) { }
+  constructor(private ovaService: OvaService,private scoreService: ScoreService, private s3Service: S3Service, private aRoute: ActivatedRoute, private router : Router) { }
 
   ngOnInit(): void {
 
@@ -37,6 +38,12 @@ export class OvaDetailsComponent implements OnInit {
       (response: any)=>{
         this.ova = response;
         console.log(this.ova);
+
+        console.log(this.ova.keyS3);
+        
+     this.downloadOva();
+        
+        
         
       }
     )
@@ -61,6 +68,22 @@ export class OvaDetailsComponent implements OnInit {
       }
     )
 
+  }
+
+  downloadOva(){
+    this.s3Service.downloadFile(this.ova.keyS3).subscribe(
+      
+      (response: Blob)=>{
+
+        const blob = new Blob([response],{type:'image/png'})
+        const url = window.URL.createObjectURL(blob);
+        window.open(url);
+        console.log('success');
+        
+      
+        
+      }
+    )
   }
 
 
