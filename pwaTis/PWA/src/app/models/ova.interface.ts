@@ -18,5 +18,6 @@ export interface Ova {
     date : string,
     creator : string,
     coverage : string,
-    contributor : string
+    contributor : string,
+    keyS3 : string
 }

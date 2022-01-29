@@ -100,11 +100,10 @@ public class Ova {
     @Column(name = "link")
     private String ovaLink;
 
-    @Column(name = "ova_File")
-    @Lob
-    private byte[] ovaFile;
+    @Column(name = "rating")
+    private Double  rating ;
 
-    @JsonIgnore
-    @OneToMany(mappedBy = "ova")
-    private Set<Score> scores;
+    @Column(name = "keyS3")
+    private String keyS3;
+
 }

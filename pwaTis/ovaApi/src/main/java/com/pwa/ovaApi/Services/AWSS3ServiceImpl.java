@@ -1,10 +1,9 @@
-package com.proyect.webapp.services.impl;
+package com.pwa.ovaApi.Services;
 
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.model.PutObjectRequest;
 import com.amazonaws.services.s3.model.S3Object;
-import com.proyect.webapp.services.OvaService;
-import com.proyect.webapp.services.api.AWSS3Service;
+import com.pwa.ovaApi.Interfaces.AWSS3Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -38,4 +37,11 @@ public class AWSS3ServiceImpl implements AWSS3Service {
             return null;
         }
     }
+
+    @Override
+    public InputStream downloadFile(String key) {
+        S3Object object = amazonS3.getObject(bucketName, key);
+        return object.getObjectContent();
+    }
+
 }

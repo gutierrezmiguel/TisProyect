@@ -9,12 +9,14 @@ import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.Optional;
 
-@RestController
+@Controller
 @RequestMapping("/s3")
 public class UploadFileController {
 
@@ -24,7 +26,7 @@ public class UploadFileController {
     private OvaService ovaService;
 
     @PostMapping(value = "/upload/{idOva}")
-    public ResponseEntity<String> uploadFile(@RequestPart(value = "file")MultipartFile file, @PathVariable Long idOva){
+    public String uploadFile(@RequestPart(value = "file")MultipartFile file, @PathVariable Long idOva, Model model){
         String key = awss3Service.uploadFile(file);
         String response = "El archivo "+file.getOriginalFilename()+" fue cargado existosamente";
         Optional<Ova> ova = ovaService.listarid(idOva);
@@ -32,13 +34,6 @@ public class UploadFileController {
             Ova ovaToEdit = ova.get();
             ovaService.editkey(key,ovaToEdit);
         }
-        return new ResponseEntity<String>(response, HttpStatus.OK);
+        return "redirect:/listar";
     }
-    @GetMapping(value = "/download")
-    public ResponseEntity<Resource> download(@RequestParam("key") String key) {
-        InputStreamResource resource  = new InputStreamResource(awss3Service.downloadFile(key));
-        return ResponseEntity.ok().header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\""+key+"\"").body(resource);
-    }
-
-
 }

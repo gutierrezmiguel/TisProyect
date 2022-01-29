@@ -16,15 +16,15 @@ export class AdministradorLayoutComponent implements OnInit {
   ngOnInit(): void {
 
     
-    if(localStorage.getItem('username')){
-      this.router.navigateByUrl('/admin')
+    if(!localStorage.getItem('username')){
+      this.router.navigateByUrl('/Login')
   }
 
 
 
 
   }
-
+  
   cerrarSesion(){
     localStorage.clear();
     this.router.navigateByUrl('/login')
