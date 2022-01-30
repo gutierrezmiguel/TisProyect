@@ -4,6 +4,6 @@
 // The list of which env maps to which file can be found in `.angular-cli.json`.
 
 export const environment = {
-  apiBaseUrl: 'http://localhost:8080/',
+  apiBaseUrl: 'https://18.220.83.51:8443/',
   production: false
 };
