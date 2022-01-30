@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { User } from '../../models/user.interface';
+import { User, UserResponse } from '../../models/user.interface';
 import { AuthService } from '../../services/auth.service';
 
 @Component({
@@ -49,10 +49,11 @@ export class RegisterComponent {
     
 
     this.authService.registerUser(credentials).subscribe(
-      (response: any)=>{
+      (response: UserResponse)=>{
         //console.log(response);
-        localStorage.setItem('username',credentials.username);
-        localStorage.setItem('password',credentials.password);
+        localStorage.setItem('id',String(response.idUser));
+        localStorage.setItem('username',response.username);
+        localStorage.setItem('password',response.password);
         this.router.navigateByUrl("/Ovas")
 
         

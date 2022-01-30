@@ -56,6 +56,8 @@ import { OvasCarouselComponent } from './views/ovas-carousel/ovas-carousel.compo
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { OvaDetailsComponent } from './views/ova-details/ova-details.component';
 import { RegisterComponent } from './views/register/register.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 @NgModule({
   imports: [
@@ -82,6 +84,12 @@ import { RegisterComponent } from './views/register/register.component';
     MatPaginatorModule,
     GooglePlaceModule,
     NgbModule,
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: environment.production,
+      // Register the ServiceWorker as soon as the app is stable
+      // or after 30 seconds (whichever comes first).
+      registrationStrategy: 'registerWhenStable:30000'
+    }),
     
   ],
   declarations: [

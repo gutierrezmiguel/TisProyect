@@ -10,7 +10,6 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { HttpClientModule } from '@angular/common/http';
 import { GooglePlaceModule } from 'ngx-google-places-autocomplete';
-import { DashboardComponent } from '../../views/dashboard/dashboard.component';
 import { OvasCarouselComponent } from '../../views/ovas-carousel/ovas-carousel.component';
 import { NgbCarouselModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { OvaDetailsComponent } from '../../views/ova-details/ova-details.component';
@@ -18,7 +17,6 @@ import { OvaDetailsComponent } from '../../views/ova-details/ova-details.compone
 @NgModule({
   declarations: [
     OvasCarouselComponent,
-    DashboardComponent,
     OvaDetailsComponent
     
   ],

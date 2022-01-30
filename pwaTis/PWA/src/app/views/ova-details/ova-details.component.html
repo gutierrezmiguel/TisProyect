@@ -1,89 +1,78 @@
-<div class="container mt-3 p-2">
+<div class="container mt-3 p-2 centering">
+
+  <h1 class="card-title "> Ova: {{ova.title}}</h1>
   <div class="card text-center rounded-3 p-5">
-    <h3 class="text-left">Calificación: {{ ova.rating }}</h3>
     <!-- IMAGEN -->
-    <ng-container *ngIf="ova.keyS3; else video">
-      <img
-        src="https://www.ccpixs.com/ccimages/m/vector-cloud-computing-download-m-1155.jpg"
-        class="card-img-top mb-2"
-        alt=""
-      />
-      <!-- boton descargar ova -->
-      <button (click)="downloadOva()" class="btn btn-success col-4">
-        DESCARGAR OVA
-      </button>
-    </ng-container>
-    <ng-template #video>
-      <ng-container *ngIf="ova.ovaLink; else default">
-        <a [href]="ova.ovaLink" target="_blank">
-          <img
-            src="../../assets/img/ovas/youtube.jpg"
-            class="card-img-top"
-            alt=""
-          />
-        </a>
-      </ng-container>
-    </ng-template>
-    <ng-template #default>
-      <img
-        src="../../assets/img/ovas/11070.jpg"
-        class="card-img-top p-5"
-        alt=""
-      />
-    </ng-template>
+    <!-- boton descargar ova -->
+    <img src="../../assets/img/ovas/11070.jpg" class="card-img-top p-5" alt="" width=10% height=10% />
     <!-- FIN IMAGEN -->
 
     <!-- INFORMACION OVA -->
-    <h2 class="mt-4">INFORMACIÓN DEL OVA</h2>
-    <div class="row mt-3 m-2 text-left">
-      <div class="col-6">
+    <div class="row mt-3 m-2">
+
+      <div class="col-6 text-left">
+
+
+
+        <ng-container *ngIf="ova.ovaLink">
+          <p>
+            <strong>Link:</strong>
+            <span>
+              <i>{{ ova.ovaLink }}</i>
+            </span>
+          </p>
+        </ng-container>
+
         <p>
           <strong>Descripcion:</strong>
           <span>
             <i>{{ ova.description }}</i>
           </span>
         </p>
-      </div>
-      <div class="col-6">
         <p>
-          <strong>Creador:</strong>
+          <strong>Publisher:</strong>
+          <span>
+            <i>{{ ova.publisher }}</i>
+          </span>
+        </p>
+        <p>
+          <strong>Contributor:</strong>
+          <span>
+            <i>{{ ova.contributor }}</i>
+          </span>
+        </p>
+        <p>
+          <strong>Date:</strong>
+          <span>
+            <i>{{ ova.date }}</i>
+          </span>
+        </p>
+        <p>
+          <strong>Creator:</strong>
           <span>
             <i>{{ ova.creator }}</i>
           </span>
         </p>
         <p>
-          <strong>Creador:</strong>
+          <strong>Language:</strong>
           <span>
-            <i>{{ ova.creator }}</i>
+            <i>{{ ova.language }}</i>
           </span>
         </p>
         <p>
-          <strong>Creador:</strong>
+          <strong>Source:</strong>
           <span>
-            <i>{{ ova.creator }}</i>
-          </span>
-        </p>
-        <p>
-          <strong>Creador:</strong>
-          <span>
-            <i>{{ ova.creator }}</i>
-          </span>
-        </p>
-        <p>
-          <strong>Creador:</strong>
-          <span>
-            <i>{{ ova.creator }}</i>
-          </span>
-        </p>
-        <p>
-          <strong>Creador:</strong>
-          <span>
-            <i>{{ ova.creator }}</i>
+            <i>{{ ova.source }}</i>
           </span>
         </p>
       </div>
     </div>
     <!-- FIN INFORMACION OVA -->
     <div class="row"></div>
+    <div class="centering">
+      <button (click)="downloadOva()" class="btn btn-success col-4">
+        Descargar
+      </button>
+    </div>
   </div>
 </div>
