@@ -22,7 +22,7 @@ export class OvaDetailsComponent implements OnInit {
 
   private ova_id : number;
   private user_id: number;
-  private ova : Ova;
+  public ova : Ova;
   
 
   
@@ -43,9 +43,6 @@ export class OvaDetailsComponent implements OnInit {
         this.ova = response;
         console.log(this.ova);
         console.log(this.ova.ovaLink);
-        
-     this.downloadOva();
-        
         
         
       }
@@ -86,8 +83,6 @@ export class OvaDetailsComponent implements OnInit {
 
       (response: Blob)=>{
 
-
-   
         
         const blob = new Blob([response],{type:type.extensionConverted})
         saveAs(blob,this.ova.title);
