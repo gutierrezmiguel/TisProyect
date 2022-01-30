@@ -21,6 +21,7 @@ import { P404Component } from './views/error/404.component';
 import { P500Component } from './views/error/500.component';
 import { LoginComponent } from './views/login/login.component';
 
+
 const APP_CONTAINERS = [
   DefaultLayoutComponent
 ];
@@ -54,6 +55,7 @@ import { AdministradorLayoutComponent } from './layouts/administrador-layout/adm
 import { OvasCarouselComponent } from './views/ovas-carousel/ovas-carousel.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { OvaDetailsComponent } from './views/ova-details/ova-details.component';
+import { RegisterComponent } from './views/register/register.component';
 
 @NgModule({
   imports: [
@@ -88,7 +90,8 @@ import { OvaDetailsComponent } from './views/ova-details/ova-details.component';
     P404Component,
     P500Component,
     LoginComponent,
-    AdministradorLayoutComponent
+    AdministradorLayoutComponent,
+    RegisterComponent
     
   ],
   providers: [

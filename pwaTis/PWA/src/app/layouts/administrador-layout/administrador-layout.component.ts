@@ -17,7 +17,7 @@ export class AdministradorLayoutComponent implements OnInit {
 
     
     if(!localStorage.getItem('username')){
-      this.router.navigateByUrl('/Login')
+      this.router.navigateByUrl('/login')
   }
 
 

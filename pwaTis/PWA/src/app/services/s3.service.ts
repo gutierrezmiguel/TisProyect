@@ -13,8 +13,8 @@ export class S3Service {
     constructor(private http: HttpClient) { }
 
 
-    downloadFile(key: string):Observable<Blob>{
-        return this.http.get(this.baseUrl + `download/${key}` ,{ responseType: 'blob' });
+    downloadFile(key: string):Observable<any>{
+        return this.http.get(this.baseUrl + `download/${key}` ,{ responseType: 'blob'});
     }
 
 

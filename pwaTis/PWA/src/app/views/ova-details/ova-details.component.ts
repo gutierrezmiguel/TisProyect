@@ -5,6 +5,9 @@ import { Score } from '../../models/score.interface';
 import { OvaService } from '../../services/ova.service';
 import { S3Service } from '../../services/s3.service';
 import { ScoreService } from '../../services/score.service';
+import { saveAs } from 'file-saver';
+import { privatemimeTypes } from './ema-list';
+
 
 
 @Component({
@@ -20,6 +23,9 @@ export class OvaDetailsComponent implements OnInit {
   private ova_id : number;
   private user_id: number;
   private ova : Ova;
+  
+
+  
 
   constructor(private ovaService: OvaService,private scoreService: ScoreService, private s3Service: S3Service, private aRoute: ActivatedRoute, private router : Router) { }
 
@@ -68,14 +74,23 @@ export class OvaDetailsComponent implements OnInit {
   }
 
   downloadOva(){
+    
+    let extension  = this.ova.keyS3;
+    extension = extension.substring(extension.indexOf('.')+1)
+
+    const type = privatemimeTypes.find(element=> element.extension == extension)
+    console.log(extension);
+    
+    
     this.s3Service.downloadFile(this.ova.keyS3).subscribe(
-      
+
       (response: Blob)=>{
 
-        const blob = new Blob([response],{type:'image/png'})
-        const url = window.URL.createObjectURL(blob);
-        window.open(url);
-        console.log('success');
+
+   
+        
+        const blob = new Blob([response],{type:type.extensionConverted})
+        saveAs(blob,this.ova.title);
         
       
         

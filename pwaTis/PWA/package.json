@@ -72,6 +72,7 @@
     "@angular/cli": "^11.2.4",
     "@angular/compiler-cli": "^11.2.5",
     "@angular/language-service": "^11.2.5",
+    "@types/file-saver": "^2.0.5",
     "@types/google.maps": "^3.45.6",
     "@types/jasmine": "^3.6.6",
     "@types/jasminewd2": "^2.0.8",
