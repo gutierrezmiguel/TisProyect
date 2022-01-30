@@ -35,7 +35,8 @@ import { OvaDetailsComponent } from '../../views/ova-details/ova-details.compone
     HttpClientModule,
     GooglePlaceModule,
     NgbModule,
-    NgbCarouselModule,
+    NgbCarouselModule
+    
     
 
     

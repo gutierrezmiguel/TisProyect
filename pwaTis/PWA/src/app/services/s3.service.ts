@@ -14,7 +14,7 @@ export class S3Service {
 
 
     downloadFile(key: string):Observable<any>{
-        return this.http.get(this.baseUrl + `download/${key}` ,{ responseType: 'arraybuffer'});
+        return this.http.get(this.baseUrl + `download/${key}` ,{ responseType: 'blob'});
     }
 
 

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Ova } from '../../models/ova.interface';
 import { OvaService } from '../../services/ova.service';
@@ -14,6 +14,9 @@ import { OvaService } from '../../services/ova.service';
 
 
 export class OvasCarouselComponent implements OnInit {
+
+
+
 
   images = [944, 1011, 984].map((n) => `https://picsum.photos/id/${n}/900/500`);
 
@@ -46,5 +49,8 @@ export class OvasCarouselComponent implements OnInit {
     console.log("Detallando");
     this.router.navigateByUrl("Ovas/details/" + id_ova)
   }
+
+
+
 
 }
