@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { navItems } from './administrador_nav';
 
@@ -8,6 +8,22 @@ import { navItems } from './administrador_nav';
   styleUrls: ['./administrador-layout.component.scss']
 })
 export class AdministradorLayoutComponent implements OnInit {
+
+  
+  installEvent = null;
+
+  
+
+  installByUser () {
+    console.log("entra pero no hace nada installbyuser")
+    if(this.installEvent){
+      this.installEvent.prompt();
+      this.installEvent.userChoice.then(rta => {
+        console.log(rta);
+      })
+      
+    }
+  }
 
   constructor(private router: Router) { }
   public sidebarMinimized = false;
@@ -30,4 +46,10 @@ export class AdministradorLayoutComponent implements OnInit {
     this.router.navigateByUrl('/login')
   }
 
+  @HostListener('window:beforeinstallprompt', ['$event'])
+  onBeforeInstallPrompt(event : Event) {
+    console.log(event);
+    event.preventDefault();
+    this.installEvent = event;
+  }
 }
