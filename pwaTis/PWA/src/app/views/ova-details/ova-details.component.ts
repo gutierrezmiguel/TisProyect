@@ -33,20 +33,15 @@ export class OvaDetailsComponent implements OnInit {
     this.ova_id = Number(this.aRoute.snapshot.paramMap.get("id_ova"))
     this.user_id = Number(localStorage.getItem("id"))
     this.getOva(this.ova_id);
+    this.rateOva(500);
 
     
   }
 
   getOva( id_ova: number){
-    this.ovaService.getOva(id_ova).subscribe(
-      (response: any)=>{
-        this.ova = response;
-        console.log(this.ova);
-        console.log(this.ova.ovaLink);
-        
-        
-      }
-    )
+
+    this.ova= this.ovaService.getOva(id_ova)
+    console.log(this.ova);
   }
 
   rateOva(rating: number){

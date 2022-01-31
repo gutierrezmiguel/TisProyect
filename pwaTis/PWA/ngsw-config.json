@@ -38,9 +38,9 @@
         "https://18.220.83.51:8443/**"
       ],
     "cacheConfig": {
-    "maxSize": 20,
+    "maxSize": 500000,
     "maxAge": "24h",
-    "timeout": "5s",
+    "timeout": "24h",
     "strategy": "freshness"
       }
     }

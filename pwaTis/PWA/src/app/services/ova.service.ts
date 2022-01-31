@@ -9,17 +9,25 @@ import { Ova } from '../models/ova.interface';
 })
 export class OvaService {
 
-  baseUrl  = environment.apiBaseUrl + 'ova/'
+  public ovas: Ova[] = [];
 
-  constructor(private http : HttpClient) { }
+  baseUrl = environment.apiBaseUrl + 'ova/'
 
-  getOvas() : Observable<Ova[]>{
+  constructor(private http: HttpClient) { }
+
+  getOvas(): Observable<Ova[]> {
     return this.http.get<Ova[]>(this.baseUrl + 'list');
   }
 
-  getOva(id_ova : number) : Observable<Ova>{
-    return this.http.get<Ova>(this.baseUrl + id_ova);
+  setOvas(ovasList: Ova[]) {
+    this.ovas = ovasList;
   }
+
+  getOva(id_ova: number) {
+    return this.ovas.find(ovas => ovas.id_ova = id_ova);
+  }
+
+
 
 
 }
