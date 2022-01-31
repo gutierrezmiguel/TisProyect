@@ -1,4 +1,4 @@
-import { Extension} from '../../models/extension.interface';
+import { Extension } from '../../models/extension.interface';
 
 
 export const privatemimeTypes: Extension[]=[

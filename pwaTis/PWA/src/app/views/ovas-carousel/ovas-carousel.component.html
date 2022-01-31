@@ -1,22 +1,31 @@
 <div class="container mt-4">
-  <div *ngFor="let ova of Ovas">
+  <div *ngFor="let ova of ovas">
     <div class="column">
       <div class="card rounded-3">
-        <img src="../../assets/img/ovas/11070.jpg" class="card-img-top" alt="..." />
+        <img
+          src="../../assets/img/ovas/bannerOvas.jpg"
+          class="card-img-top"
+          alt="..."
+        />
         <div class="card-body">
           <h5 class="card-title">{{ ova.title }}</h5>
           <p class="card-text">{{ ova.description }}</p>
-          <ngb-rating [(rate)]=ova.rating (hover)="hovered=$event" (leave)="hovered=0" [readonly]=true [max]="5">
+          <ngb-rating
+            class="rating"
+            [(rate)]="ova.rating"
+            (hover)="hovered = $event"
+            (leave)="hovered = 0"
+            [readonly]="true"
+            [max]="5"
+          >
           </ngb-rating>
-          
-<b>{{ova.rating}}</b>
-          <hr>
-          <pre>
-</pre>
+          <strong>{{ ova.rating | number: "1.1-1" }}</strong>
+          <hr />
+          <pre></pre>
 
-          
-          <a class="btn btn-primary" (click)="detallarOva(ova.idOva)">Ver Ova</a>
-
+          <a class="btn btn-primary text-white" (click)="detallarOva(ova.idOva)"
+            >Ver Ova</a
+          >
         </div>
       </div>
     </div>
