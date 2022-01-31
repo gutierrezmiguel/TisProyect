@@ -13,7 +13,7 @@ export interface Ova {
     ovaLink : string,
     language : string,
     identifier : string,
-    id_ova : number,
+    idOva : number,
     format : string,
     description : string,
     date : string,

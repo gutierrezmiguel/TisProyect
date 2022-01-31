@@ -24,9 +24,11 @@ export class OvaService {
   }
 
   getOva(id_ova: number) {
-    console.log(this.ovas);
+    console.log(id_ova);
+    let busquedaOva =  this.ovas.find(ovas => ovas.idOva === id_ova);
+    console.log(busquedaOva);
+    return busquedaOva;
     
-    return this.ovas.find(ovas => ovas.id_ova = id_ova);
   }
 
 

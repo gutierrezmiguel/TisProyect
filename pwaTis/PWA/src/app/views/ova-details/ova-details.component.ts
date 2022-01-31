@@ -24,6 +24,9 @@ export class OvaDetailsComponent implements OnInit {
   private user_id: number;
   public score: Score = {ovaId: null, userId: null, scoreNumber:null};
   public ova : Ova;
+
+  
+
   
 
   constructor(private ovaService: OvaService,private scoreService: ScoreService, private s3Service: S3Service, private aRoute: ActivatedRoute, private router : Router) { }
@@ -34,7 +37,6 @@ export class OvaDetailsComponent implements OnInit {
     this.ova_id = Number(this.aRoute.snapshot.paramMap.get("id_ova"))
     this.user_id = Number(localStorage.getItem("id"))
 
-    /*
     this.scoreService.scorePerUser(this.ova_id, this.user_id).subscribe(
       (res: Score) => {
         if(res.scoreNumber != null){
@@ -44,10 +46,6 @@ export class OvaDetailsComponent implements OnInit {
 
     );
 
-    
-      */
-
-    
     this.ova = this.ovaService.getOva(this.ova_id)
   }
 
