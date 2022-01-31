@@ -46,14 +46,29 @@ export class OvaDetailsComponent implements OnInit {
 
     );
 
-    this.ova = this.ovaService.getOva(this.ova_id)
+    this.ova = this.ovaService.getOvaOffline(this.ova_id)
+
+    if(!this.ova){
+      this.ovaService.getOvaOnline(this.ova_id).subscribe(
+        (response : Ova)=>{
+          console.log(response);
+          
+          this.ova = response;
+        },
+
+        (error: any)=>{
+          this.router.navigateByUrl("Ovas")
+        }
+      )
+    }
+
   }
 
 
   getOva( id_ova: number){
     console.log(this.ova_id);
     
-    this.ova= this.ovaService.getOva(id_ova)
+    this.ova= this.ovaService.getOvaOffline(id_ova)
     console.log(this.ova);
   }
 

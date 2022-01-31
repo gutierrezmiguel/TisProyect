@@ -23,15 +23,15 @@ export class OvaService {
     this.ovas = ovasList;
   }
 
-  getOva(id_ova: number) {
+  getOvaOffline(id_ova: number) {
     console.log(id_ova);
     let busquedaOva =  this.ovas.find(ovas => ovas.idOva === id_ova);
     console.log(busquedaOva);
     return busquedaOva;
-    
   }
 
-
-
+  getOvaOnline(id_ova: number): Observable<Ova>{
+    return this.http.get<Ova>(this.baseUrl + id_ova);
+  }
 
 }
