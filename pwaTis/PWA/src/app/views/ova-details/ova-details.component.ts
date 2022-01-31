@@ -22,9 +22,8 @@ export class OvaDetailsComponent implements OnInit {
 
   private ova_id : number;
   private user_id: number;
+  public score: Score = {ovaId: 0, userId: 0, scoreNumber:0};
   public ova : Ova;
-  
-
   
 
   constructor(private ovaService: OvaService,private scoreService: ScoreService, private s3Service: S3Service, private aRoute: ActivatedRoute, private router : Router) { }
@@ -33,18 +32,19 @@ export class OvaDetailsComponent implements OnInit {
     this.ova_id = Number(this.aRoute.snapshot.paramMap.get("id_ova"))
     this.user_id = Number(localStorage.getItem("id"))
     this.getOva(this.ova_id);
-
-    
+    this.scoreService.scorePerUser(this.ova_id, this.user_id).subscribe(
+      (res: Score) => {
+        if(res.scoreNumber != null){
+          this.score = res;
+        }
+      }
+    );  
   }
 
   getOva( id_ova: number){
     this.ovaService.getOva(id_ova).subscribe(
       (response: any)=>{
         this.ova = response;
-        console.log(this.ova);
-        console.log(this.ova.ovaLink);
-        
-        
       }
     )
   }
@@ -75,7 +75,6 @@ export class OvaDetailsComponent implements OnInit {
     extension = extension.substring(extension.indexOf('.')+1)
 
     const type = privatemimeTypes.find(element=> element.extension == extension)
-    console.log(extension);
     
     
     this.s3Service.downloadFile(this.ova.keyS3).subscribe(

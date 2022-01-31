@@ -40,13 +40,13 @@
         <!-- <p *ngIf="!ova.rating">CALIFICA ESTE OVA</p> -->
         <ngb-rating
           class="pt-2 pb-2 rating"
-          [(rate)]="ova.rating"
+          [(rate)]="score.scoreNumber"
           (rateChange)="rateOva($event)"
           [readonly]="false"
           [max]="5"
         >
         </ngb-rating>
-        <strong>{{ ova.rating }}</strong>
+        <strong>{{ score.scoreNumber }}</strong>
       </div>
 
       <!-- INFORMACION OVA -->

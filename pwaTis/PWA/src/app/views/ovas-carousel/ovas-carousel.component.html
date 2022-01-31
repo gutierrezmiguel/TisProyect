@@ -19,8 +19,7 @@
             [max]="5"
           >
           </ngb-rating>
-
-          <b>{{ ova.rating }}</b>
+          <strong>{{ ova.rating | number: "1.1-1" }}</strong>
           <hr />
           <pre></pre>
 
