@@ -47,7 +47,7 @@ export class OvasCarouselComponent implements OnInit {
   }
 
   detallarOva(id_ova){
-    console.log("Detallando");
+    console.log("Detallando" + id_ova);
     this.router.navigateByUrl("Ovas/details/" + id_ova)
   }
 
