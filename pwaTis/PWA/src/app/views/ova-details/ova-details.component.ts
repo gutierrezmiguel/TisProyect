@@ -42,11 +42,10 @@ export class OvaDetailsComponent implements OnInit {
   }
 
   getOva( id_ova: number){
-    this.ovaService.getOva(id_ova).subscribe(
-      (response: any)=>{
-        this.ova = response;
-      }
-    )
+    console.log(this.ova_id);
+    
+    this.ova= this.ovaService.getOva(id_ova)
+    console.log(this.ova);
   }
 
   rateOva(rating: number){

@@ -20,7 +20,7 @@ export class OvasCarouselComponent implements OnInit {
 
   images = [944, 1011, 984].map((n) => `https://picsum.photos/id/${n}/900/500`);
 
-  Ovas : Ova[];
+  ovas : Ova[];
 
   constructor(private router: Router, private ovaService: OvaService) { }
 
@@ -37,7 +37,8 @@ export class OvasCarouselComponent implements OnInit {
 
     this.ovaService.getOvas().subscribe(
       (response: any)=>{
-        this.Ovas = response;
+        this.ovas = response;
+        this.ovaService.setOvas(this.ovas)
         console.log(response);
         
       }
