@@ -73,6 +73,8 @@ export class OvaDetailsComponent implements OnInit {
   }
 
   rateOva(rating: number){
+
+    
     let newRate : any ={
       scoreId: {
           user: {
@@ -84,11 +86,14 @@ export class OvaDetailsComponent implements OnInit {
       },
       scoreNumber: rating
   }
+
+  if(rating){
     this.scoreService.mergeScore(newRate).subscribe(
       (response: any)=>{
-        console.log(response); 
       }
     )
+  }
+    
 
   }
 
