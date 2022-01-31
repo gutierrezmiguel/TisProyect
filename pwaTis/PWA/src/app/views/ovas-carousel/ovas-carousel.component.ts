@@ -37,6 +37,7 @@ export class OvasCarouselComponent implements OnInit {
     this.ovaService.getOvas().subscribe(
       (response: any)=>{
         this.ovas = response;
+        this.ovaService.setOvas(this.ovas)
         console.log(response);
         this.ovaService.setOvas(this.ovas);
         
@@ -49,7 +50,5 @@ export class OvasCarouselComponent implements OnInit {
     console.log("Detallando");
     this.router.navigateByUrl("Ovas/details/" + id_ova)
   }
-
-  
 
 }

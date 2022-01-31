@@ -52,9 +52,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 
 import { GooglePlaceModule } from 'ngx-google-places-autocomplete';
 import { AdministradorLayoutComponent } from './layouts/administrador-layout/administrador-layout.component';
-import { OvasCarouselComponent } from './views/ovas-carousel/ovas-carousel.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { OvaDetailsComponent } from './views/ova-details/ova-details.component';
 import { RegisterComponent } from './views/register/register.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
