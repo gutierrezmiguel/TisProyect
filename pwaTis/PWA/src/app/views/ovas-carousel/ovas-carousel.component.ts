@@ -50,7 +50,4 @@ export class OvasCarouselComponent implements OnInit {
     this.router.navigateByUrl("Ovas/details/" + id_ova)
   }
 
-
-
-
 }

@@ -63,8 +63,7 @@ export class OvaDetailsComponent implements OnInit {
   }
     this.scoreService.mergeScore(newRate).subscribe(
       (response: any)=>{
-        console.log(response);
-        
+        console.log(response); 
       }
     )
 
