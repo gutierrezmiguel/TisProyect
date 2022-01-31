@@ -22,24 +22,35 @@ export class OvaDetailsComponent implements OnInit {
 
   private ova_id : number;
   private user_id: number;
-  public score: Score = {ovaId: 0, userId: 0, scoreNumber:0};
+  public score: Score = {ovaId: null, userId: null, scoreNumber:null};
   public ova : Ova;
   
 
   constructor(private ovaService: OvaService,private scoreService: ScoreService, private s3Service: S3Service, private aRoute: ActivatedRoute, private router : Router) { }
 
   ngOnInit(): void {
+
+    
     this.ova_id = Number(this.aRoute.snapshot.paramMap.get("id_ova"))
     this.user_id = Number(localStorage.getItem("id"))
-    this.getOva(this.ova_id);
+
+    /*
     this.scoreService.scorePerUser(this.ova_id, this.user_id).subscribe(
       (res: Score) => {
         if(res.scoreNumber != null){
           this.score = res;
         }
       }
-    );  
+
+    );
+
+    
+      */
+
+    
+    this.ova = this.ovaService.getOva(this.ova_id)
   }
+
 
   getOva( id_ova: number){
     console.log(this.ova_id);
