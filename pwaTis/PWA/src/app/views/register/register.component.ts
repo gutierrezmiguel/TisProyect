@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { User } from '../../../models/user.interface';
+import { User, UserResponse } from '../../models/user.interface';
 import { AuthService } from '../../services/auth.service';
 
 @Component({
@@ -25,10 +25,14 @@ export class RegisterComponent {
   ngOnInit(): void {
 
     if(localStorage.getItem('username')){
-        //this.router.navigateByUrl('/dashboard')
+        this.router.navigateByUrl('/Ovas')
     }
     
       
+  }
+
+  logIn(){
+    this.router.navigateByUrl("login")
   }
 
   registerUser(){
@@ -38,15 +42,19 @@ export class RegisterComponent {
       password  : this.registerForm.get('password')?.value
     }
 
+    console.log(credentials);
+    
 
     
     
 
     this.authService.registerUser(credentials).subscribe(
-      (response: any)=>{
-        console.log(response);
-        //localStorage.setItem('username',response.username);
-        //localStorage.setItem('password',response.password);
+      (response: UserResponse)=>{
+        //console.log(response);
+        localStorage.setItem('id',String(response.idUser));
+        localStorage.setItem('username',response.username);
+        localStorage.setItem('password',response.password);
+        this.router.navigateByUrl("/Ovas")
 
         
       }

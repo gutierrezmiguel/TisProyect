@@ -7,6 +7,7 @@ import { AdministradorLayoutComponent } from './layouts/administrador-layout/adm
 import { P404Component } from './views/error/404.component';
 import { P500Component } from './views/error/500.component';
 import { LoginComponent } from './views/login/login.component';
+import { RegisterComponent } from './views/register/register.component';
 
 export const routes: Routes = [
   {
@@ -14,6 +15,12 @@ export const routes: Routes = [
     component: LoginComponent,
     data: {
       title: 'login'
+    }
+  }, {
+    path: 'register',
+    component: RegisterComponent,
+    data: {
+      title: 'register'
     }
   },
   {
@@ -38,7 +45,7 @@ export const routes: Routes = [
     }
   },
   {
-    path: 'admin',
+    path: 'Ovas',
     component: AdministradorLayoutComponent,
     loadChildren: () => import('./layouts/administrador-layout/administrador-layout.module').then(m => m.AdministradorLayoutModule)
 

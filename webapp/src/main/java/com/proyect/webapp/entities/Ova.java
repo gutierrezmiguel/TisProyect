@@ -17,7 +17,7 @@ import java.io.File;
 public class Ova {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "idOva")
     private Long idOva;
 
@@ -68,6 +68,9 @@ public class Ova {
 
     @Column(name = "link")
     private String ovaLink;
+
+    @Column(name = "rating")
+    private Double  rating ;
 
     @Column(name = "keyS3")
     private String keyS3;

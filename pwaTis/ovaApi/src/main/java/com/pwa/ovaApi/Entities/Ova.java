@@ -18,7 +18,7 @@ import java.util.Set;
 public class Ova {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "id_Ova")
     private Long idOva;
 
@@ -100,10 +100,10 @@ public class Ova {
     @Column(name = "link")
     private String ovaLink;
 
+    @Column(name = "rating")
+    private Double  rating ;
+
     @Column(name = "keyS3")
     private String keyS3;
 
-    @JsonIgnore
-    @OneToMany(mappedBy = "ova")
-    private Set<Score> scores;
 }

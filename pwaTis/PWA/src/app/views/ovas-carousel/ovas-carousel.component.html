@@ -1,16 +1,191 @@
 <div class="container mt-4">
-  <div *ngFor="let ova of Ovas">
+  <!-- FILTROS -->
+  <div class="col-2">
+    <h3 class="mb-3">Buscar:</h3>
+  </div>
+  <div class="input-group">
+    <div class="input-box col-12">
+      <div class="form-outline">
+        <input
+          type="search"
+          (input)="change($event)"
+          [(ngModel)]="filter"
+          class="form-control mb-3"
+        />
+        <i class="fa fa-search"></i>
+      </div>
+    </div>
+    <div class="row w-100">
+      <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 filtros">
+        <label class="form-label" for="form1"
+          ><strong>Filtrar por:</strong></label
+        >
+        <div class="form-group">
+          <div class="custom-control custom-radio mb-3">
+            <input
+              name="filter"
+              (change)="clickRadio($event)"
+              [(ngModel)]="filterType"
+              class="custom-control-input"
+              id="radioFilterByTitle"
+              value="1"
+              type="radio"
+            />
+            <label class="custom-control-label" for="radioFilterByTitle"
+              >Título</label
+            >
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="custom-control custom-radio mb-3">
+            <input
+              name="filter"
+              (change)="clickRadio($event)"
+              [(ngModel)]="filterType"
+              class="custom-control-input"
+              id="radioFilterByPublisher"
+              value="2"
+              type="radio"
+            />
+            <label class="custom-control-label" for="radioFilterByPublisher"
+              >Editorial</label
+            >
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="custom-control custom-radio mb-3">
+            <input
+              name="filter"
+              (change)="clickRadio($event)"
+              [(ngModel)]="filterType"
+              class="custom-control-input"
+              id="radioFilterBySubject"
+              value="3"
+              type="radio"
+            />
+            <label class="custom-control-label" for="radioFilterBySubject"
+              >Tema</label
+            >
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="custom-control custom-radio mb-3">
+            <input
+              name="filter"
+              (change)="clickRadio($event)"
+              [(ngModel)]="filterType"
+              class="custom-control-input"
+              id="radioFilterCreator"
+              value="4"
+              type="radio"
+            />
+            <label class="custom-control-label" for="radioFilterCreator"
+              >Creador</label
+            >
+          </div>
+        </div>
+      </div>
+      <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 ordenarPor">
+        <label class="form-label" for="form1"
+          ><strong>Ordenar por:</strong></label
+        >
+        <div class="form-group">
+          <div class="custom-control custom-radio mb-3">
+            <input
+              name="order"
+              (change)="clickOrder($event)"
+              [(ngModel)]="orderBy"
+              class="custom-control-input"
+              id="radioOrderByRateAsc"
+              value="1"
+              type="radio"
+            />
+            <label class="custom-control-label mr-1" for="radioOrderByRateAsc"
+              >Rating</label
+            >
+            <i class="fas fa-sort-amount-up"></i>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="custom-control custom-radio mb-3">
+            <input
+              name="order"
+              (change)="clickOrder($event)"
+              [(ngModel)]="orderBy"
+              class="custom-control-input"
+              id="radioOrderByRateDesc"
+              value="2"
+              type="radio"
+            />
+            <label class="custom-control-label mr-2" for="radioOrderByRateDesc"
+              >Rating</label
+            ><i class="fas fa-sort-amount-down"></i>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="custom-control custom-radio mb-3">
+            <input
+              name="order"
+              (change)="clickOrder($event)"
+              [(ngModel)]="orderBy"
+              class="custom-control-input"
+              id="radioOrderByDateAsc"
+              value="3"
+              type="radio"
+            />
+            <label class="custom-control-label mr-2" for="radioOrderByDateAsc"
+              >Fecha</label
+            ><i class="fas fa-sort-amount-up"></i>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="custom-control custom-radio mb-3">
+            <input
+              name="order"
+              (change)="clickOrder($event)"
+              [(ngModel)]="orderBy"
+              class="custom-control-input"
+              id="radioOrderByDateDesc"
+              value="4"
+              type="radio"
+            />
+            <label class="custom-control-label" for="radioOrderByDateDesc"
+              >Fecha</label
+            >
+            <i class="fas fa-sort-amount-down"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngFor="let ova of ovas">
     <div class="column">
       <div class="card rounded-3">
         <img
-          src="../../assets/img/ovas/11070.jpg"
+          src="../../assets/img/ovas/bannerOvas.jpg"
           class="card-img-top"
           alt="..."
         />
         <div class="card-body">
           <h5 class="card-title">{{ ova.title }}</h5>
           <p class="card-text">{{ ova.description }}</p>
-          <a href="#" class="btn btn-primary">Ver Ova</a>
+          <ngb-rating
+            class="rating"
+            [(rate)]="ova.rating"
+            (hover)="hovered = $event"
+            (leave)="hovered = 0"
+            [readonly]="true"
+            [max]="5"
+          >
+          </ngb-rating>
+          <strong>{{ ova.rating | number: "1.1-1" }}</strong>
+          <hr />
+          <pre></pre>
+
+          <a class="btn btn-primary text-white" (click)="detallarOva(ova.idOva)"
+            >Ver Ova</a
+          >
         </div>
       </div>
     </div>

@@ -21,6 +21,7 @@ import { P404Component } from './views/error/404.component';
 import { P500Component } from './views/error/500.component';
 import { LoginComponent } from './views/login/login.component';
 
+
 const APP_CONTAINERS = [
   DefaultLayoutComponent
 ];
@@ -51,8 +52,10 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 
 import { GooglePlaceModule } from 'ngx-google-places-autocomplete';
 import { AdministradorLayoutComponent } from './layouts/administrador-layout/administrador-layout.component';
-import { OvasCarouselComponent } from './views/ovas-carousel/ovas-carousel.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { RegisterComponent } from './views/register/register.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 @NgModule({
   imports: [
@@ -79,6 +82,12 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     MatPaginatorModule,
     GooglePlaceModule,
     NgbModule,
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: environment.production,
+      // Register the ServiceWorker as soon as the app is stable
+      // or after 30 seconds (whichever comes first).
+      registrationStrategy: 'registerWhenStable:30000'
+    }),
     
   ],
   declarations: [
@@ -87,7 +96,9 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     P404Component,
     P500Component,
     LoginComponent,
-    AdministradorLayoutComponent
+    AdministradorLayoutComponent,
+    RegisterComponent
+    
   ],
   providers: [
     {

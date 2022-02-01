@@ -23,11 +23,6 @@ public class ScoreController {
 
     @PostMapping(path = "/merge")
     public ResponseEntity<Score> mergeScore(@RequestBody Score score){
-        System.out.println("//////////////////////////////");
-        System.out.println(score.getScoreNumber());
-        System.out.println(score.getOva());
-        System.out.println(score.getUser());
-        System.out.println("//////////////////////////////");
         scoreService.mergeScore(score);
         return new ResponseEntity<>(HttpStatus.OK);
     }

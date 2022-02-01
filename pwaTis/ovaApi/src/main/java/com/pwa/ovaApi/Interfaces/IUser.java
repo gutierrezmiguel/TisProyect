@@ -6,7 +6,7 @@ import com.pwa.ovaApi.Entities.User;
 import java.util.Optional;
 
 public interface IUser {
-    void createUser (User user);
+    User createUser (User user);
 
     void updateUser (User user);
 

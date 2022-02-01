@@ -10,13 +10,15 @@ export interface Ova {
     ova_file : string,
     ova : string,
     link : string,
+    ovaLink : string,
     language : string,
     identifier : string,
-    id_ova : number,
+    idOva : number,
     format : string,
     description : string,
     date : string,
     creator : string,
     coverage : string,
-    contributor : string
+    contributor : string,
+    keyS3 : string
 }

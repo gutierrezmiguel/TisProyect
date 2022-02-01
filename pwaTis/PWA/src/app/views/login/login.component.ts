@@ -22,14 +22,18 @@ export class LoginComponent implements OnInit {
 
 
   ngOnInit(): void {
-
+    
     
     
     if(localStorage.getItem('username')){
-        this.router.navigateByUrl('/admin')
+        this.router.navigateByUrl('/Ovas')
     }
     
       
+  }
+
+  register(){
+     this.router.navigateByUrl("register")
   }
 
   logIn(){
@@ -50,7 +54,8 @@ export class LoginComponent implements OnInit {
         console.log(response);
         localStorage.setItem('username',response.username);
         localStorage.setItem('password',response.password);
-        this.router.navigateByUrl('/admin')
+        localStorage.setItem('id',String(response.idUser));
+        this.router.navigateByUrl('/Ovas')
 
         
       }
