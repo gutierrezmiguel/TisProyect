@@ -64,6 +64,9 @@ export class OvaDetailsComponent implements OnInit {
 
   }
 
+  volver(){
+    this.router.navigateByUrl("Ovas")
+  }
 
   getOva( id_ova: number){
     console.log(this.ova_id);

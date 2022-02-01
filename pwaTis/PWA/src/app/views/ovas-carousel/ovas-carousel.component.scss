@@ -47,3 +47,24 @@ body {
   border-radius: 2px;
   color: orange;
 }
+
+.filtros {
+  display: flex;
+  justify-content: space-between;
+}
+
+.ordenarPor {
+  display: flex;
+  justify-content: space-between;
+}
+
+.input-box {
+  position: relative;
+}
+
+.input-box i {
+  position: absolute;
+  right: 25px;
+  top: 10px;
+  color: #a7a8a8;
+}

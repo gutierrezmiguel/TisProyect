@@ -2,6 +2,28 @@
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 }
 
+// BOTONES
+@media screen and (max-width: 800px) {
+  .btn-volver {
+    width: 50%;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .btn-volver {
+    width: 100%;
+  }
+}
+
+.btn-volver {
+  width: 20%;
+}
+
+button.btn.add::before {
+  font-family: fontAwesome;
+  content: "\f060\00a0";
+}
+
 .descargar-ova {
   background-color: orange;
   color: white;
@@ -31,6 +53,8 @@
   transition: 0.3s ease-in-out;
   transform: translateY(-0.25em);
 }
+
+// NAV
 .nav-tabs {
   border-bottom: 2px solid grey;
 }
@@ -51,6 +75,8 @@
 .tab-content {
   border: none;
 }
+
+// INFO OVA
 
 .informacion-ova {
   background-color: #eaf3fa;

@@ -44,7 +44,6 @@
           (rateChange)="rateOva($event)"
           [readonly]="false"
           [max]="5"
-          
         >
         </ngb-rating>
         <strong>{{ score.scoreNumber }}</strong>
@@ -164,6 +163,11 @@
         </div>
       </div>
       <!-- FIN INFORMACION OVA -->
+      <div class="col-12 mt-5 p-2 text-left">
+        <button (click)="volver()" class="btn add btn-primary btn-lg">
+          Volver
+        </button>
+      </div>
     </div>
   </div>
 </div>
