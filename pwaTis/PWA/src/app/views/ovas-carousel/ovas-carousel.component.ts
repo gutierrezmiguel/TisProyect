@@ -48,8 +48,6 @@ export class OvasCarouselComponent implements OnInit {
         this.ovas = this.ovas.sort(function (a,b){
           return a.rating - b.rating
         })
-
-        console.log(this.ovas);
         
         
       }
@@ -58,7 +56,6 @@ export class OvasCarouselComponent implements OnInit {
   }
 
   detallarOva(id_ova){
-    console.log("Detallando" + id_ova);
     this.router.navigateByUrl("Ovas/details/" + id_ova)
 
   }

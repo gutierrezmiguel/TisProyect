@@ -1,5 +1,8 @@
 import { Component, HostListener, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { OnlineStatusService, OnlineStatusType } from 'ngx-online-status';
+import { CheckStatusService } from '../../services/check-status.service';
+import { ScoreService } from '../../services/score.service';
 import { navItems } from './administrador_nav';
 
 @Component({
@@ -9,7 +12,7 @@ import { navItems } from './administrador_nav';
 })
 export class AdministradorLayoutComponent implements OnInit {
 
-  
+
   installEvent = null;
 
   
@@ -25,7 +28,11 @@ export class AdministradorLayoutComponent implements OnInit {
     }
   }
 
-  constructor(private router: Router) { }
+  constructor(private scoreService: ScoreService,private router: Router) {
+
+
+    
+   }
   public sidebarMinimized = false;
   public navItems = navItems;
 

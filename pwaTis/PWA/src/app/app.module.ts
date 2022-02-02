@@ -56,6 +56,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RegisterComponent } from './views/register/register.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
+import { OnlineStatusModule } from 'ngx-online-status';
 
 @NgModule({
   imports: [
@@ -88,6 +89,7 @@ import { environment } from '../environments/environment';
       // or after 30 seconds (whichever comes first).
       registrationStrategy: 'registerWhenStable:30000'
     }),
+    OnlineStatusModule
     
   ],
   declarations: [
@@ -96,8 +98,8 @@ import { environment } from '../environments/environment';
     P404Component,
     P500Component,
     LoginComponent,
+    RegisterComponent,
     AdministradorLayoutComponent,
-    RegisterComponent
     
   ],
   providers: [

@@ -1,12 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Ova } from '../../models/ova.interface';
-import { Score } from '../../models/score.interface';
+import { Rating, Score, ScoreIDB } from '../../models/score.interface';
 import { OvaService } from '../../services/ova.service';
 import { S3Service } from '../../services/s3.service';
 import { ScoreService } from '../../services/score.service';
 import { saveAs } from 'file-saver';
 import { privatemimeTypes } from './ema-list';
+import { CheckStatusService } from '../../services/check-status.service';
+import { OnlineStatusType } from 'ngx-online-status';
+
+
 
 
 
@@ -18,28 +22,46 @@ import { privatemimeTypes } from './ema-list';
 
 
 
+
 export class OvaDetailsComponent implements OnInit {
 
-  private ova_id : number;
+  list: Array<any> = [];
+
+  private ova_id: number;
   private user_id: number;
-  public score: Score = {ovaId: null, userId: null, scoreNumber:null};
-  public ova : Ova;
+  public score: Score = { ovaId: null, userId: null, scoreNumber: null };
+  public ova: Ova;
 
-  
 
-  
 
-  constructor(private ovaService: OvaService,private scoreService: ScoreService, private s3Service: S3Service, private aRoute: ActivatedRoute, private router : Router) { }
+
+
+
+  public newScore: Rating = {
+    "scoreId": {
+      "user": {
+        "idUser": 14
+      },
+      "ova": {
+        "idOva": 5
+      }
+    },
+    "scoreNumber": 5
+
+  }
+
+
+
+  constructor(private ovaService: OvaService, private scoreService: ScoreService, private s3Service: S3Service, private aRoute: ActivatedRoute, private router: Router) { }
+
 
   ngOnInit(): void {
-
-    
     this.ova_id = Number(this.aRoute.snapshot.paramMap.get("id_ova"))
     this.user_id = Number(localStorage.getItem("id"))
 
     this.scoreService.scorePerUser(this.ova_id, this.user_id).subscribe(
       (res: Score) => {
-        if(res.scoreNumber != null){
+        if (res.scoreNumber != null) {
           this.score = res;
         }
       }
@@ -48,15 +70,14 @@ export class OvaDetailsComponent implements OnInit {
 
     this.ova = this.ovaService.getOvaOffline(this.ova_id)
 
-    if(!this.ova){
+    if (!this.ova) {
       this.ovaService.getOvaOnline(this.ova_id).subscribe(
-        (response : Ova)=>{
-          console.log(response);
-          
+        (response: Ova) => {
+
           this.ova = response;
         },
 
-        (error: any)=>{
+        (error: any) => {
           this.router.navigateByUrl("Ovas")
         }
       )
@@ -64,60 +85,71 @@ export class OvaDetailsComponent implements OnInit {
 
   }
 
-  volver(){
+  volver() {
     this.router.navigateByUrl("Ovas")
   }
 
-  getOva( id_ova: number){
-    console.log(this.ova_id);
-    
-    this.ova= this.ovaService.getOvaOffline(id_ova)
-    console.log(this.ova);
+  getOva(id_ova: number) {
+
+    this.ova = this.ovaService.getOvaOffline(id_ova)
   }
 
-  rateOva(rating: number){
+  rateOva(rating: number) {
 
-    
-    let newRate : any ={
-      scoreId: {
-          user: {
-              idUser: this.user_id
-          },
-          ova: {
-              idOva: this.ova_id
-          }
-      },
+
+
+
+
+    console.log("Entró con rating de ", rating);
+
+
+
+    let newScore: ScoreIDB = {
+      userId: this.user_id,
+      ovaId: this.ova_id,
       scoreNumber: rating
-  }
+    }
 
-  if(rating){
-    this.scoreService.mergeScore(newRate).subscribe(
-      (response: any)=>{
+
+
+
+    if (rating) {
+
+      {
+        this.scoreService.mergeScore(newScore).subscribe(
+          (response: any) => {
+            console.log("Calificado");
+
+          }
+        )
+
       }
-    )
-  }
-    
+
+    }
+
+
+
 
   }
 
-  downloadOva(){
-    
-    let extension  = this.ova.keyS3;
-    extension = extension.substring(extension.indexOf('.')+1)
+  downloadOva() {
 
-    const type = privatemimeTypes.find(element=> element.extension == extension)
-    
-    
+    let extension = this.ova.keyS3;
+    extension = extension.substring(extension.indexOf('.') + 1)
+
+    const type = privatemimeTypes.find(element => element.extension == extension)
+
+
     this.s3Service.downloadFile(this.ova.keyS3).subscribe(
 
-      (response: Blob)=>{
+      (response: Blob) => {
 
-        
-        const blob = new Blob([response],{type:type.extensionConverted})
-        saveAs(blob,this.ova.title);
-        
-      
-        
+
+        const blob = new Blob([response], { type: type.extensionConverted })
+        saveAs(blob, this.ova.title);
+
+
+
       }
     )
   }
@@ -125,3 +157,6 @@ export class OvaDetailsComponent implements OnInit {
 
 
 }
+
+
+
