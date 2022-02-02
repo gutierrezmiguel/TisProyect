@@ -4,6 +4,7 @@ import { OnlineStatusService, OnlineStatusType } from 'ngx-online-status';
 import { CheckStatusService } from '../../services/check-status.service';
 import { ScoreService } from '../../services/score.service';
 import { navItems } from './administrador_nav';
+import { AppModule } from '../../app.module';
 
 @Component({
   selector: 'app-administrador-layout',
@@ -18,8 +19,9 @@ export class AdministradorLayoutComponent implements OnInit {
   
 
   installByUser () {
-    console.log("entra pero no hace nada installbyuser")
+    console.log("instalevent: " + this.installEvent)
     if(this.installEvent){
+      console.log("entra pero no hace nada installbyuser")
       this.installEvent.prompt();
       this.installEvent.userChoice.then(rta => {
         console.log(rta);
