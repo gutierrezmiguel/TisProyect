@@ -1,3 +1,12 @@
-.centrar-botones{
-    align-content: center;
+.centrar-botones {
+  align-content: center;
+}
+@media screen and (min-width: 995px) {
+  .boton-instalar {
+    display: none;
+  }
+
+  .boton-cerrar-sesion {
+    display: none;
+  }
 }

@@ -4,11 +4,9 @@ import { Ova } from '../../models/ova.interface';
 import { Rating, Score, ScoreIDB } from '../../models/score.interface';
 import { OvaService } from '../../services/ova.service';
 import { S3Service } from '../../services/s3.service';
-import { ScoreService } from '../../services/score.service';
+import { SyncService } from '../../services/sync.service';
 import { saveAs } from 'file-saver';
 import { privatemimeTypes } from './ema-list';
-import { CheckStatusService } from '../../services/check-status.service';
-import { OnlineStatusType } from 'ngx-online-status';
 
 
 
@@ -52,14 +50,14 @@ export class OvaDetailsComponent implements OnInit {
 
 
 
-  constructor(private ovaService: OvaService, private scoreService: ScoreService, private s3Service: S3Service, private aRoute: ActivatedRoute, private router: Router) { }
+  constructor(private ovaService: OvaService, private syncService: SyncService, private s3Service: S3Service, private aRoute: ActivatedRoute, private router: Router) { }
 
 
   ngOnInit(): void {
     this.ova_id = Number(this.aRoute.snapshot.paramMap.get("id_ova"))
     this.user_id = Number(localStorage.getItem("id"))
 
-    this.scoreService.scorePerUser(this.ova_id, this.user_id).subscribe(
+    this.syncService.scorePerUser(this.ova_id, this.user_id).subscribe(
       (res: Score) => {
         if (res.scoreNumber != null) {
           this.score = res;
@@ -68,20 +66,8 @@ export class OvaDetailsComponent implements OnInit {
 
     );
 
-    this.ova = this.ovaService.getOvaOffline(this.ova_id)
+    this.ova = this.ovaService.getOva(this.ova_id)
 
-    if (!this.ova) {
-      this.ovaService.getOvaOnline(this.ova_id).subscribe(
-        (response: Ova) => {
-
-          this.ova = response;
-        },
-
-        (error: any) => {
-          this.router.navigateByUrl("Ovas")
-        }
-      )
-    }
 
   }
 
@@ -91,17 +77,12 @@ export class OvaDetailsComponent implements OnInit {
 
   getOva(id_ova: number) {
 
-    this.ova = this.ovaService.getOvaOffline(id_ova)
+    this.ova = this.ovaService.getOva(id_ova)
   }
 
   rateOva(rating: number) {
 
-
-
-
-
     console.log("Entró con rating de ", rating);
-
 
 
     let newScore: ScoreIDB = {
@@ -116,8 +97,11 @@ export class OvaDetailsComponent implements OnInit {
     if (rating) {
 
       {
-        this.scoreService.mergeScore(newScore).subscribe(
+        console.log(newScore);
+        
+        this.syncService.mergeScore(newScore).subscribe(
           (response: any) => {
+
             console.log("Calificado");
 
           }

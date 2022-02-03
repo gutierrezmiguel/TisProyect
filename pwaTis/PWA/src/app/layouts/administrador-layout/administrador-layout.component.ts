@@ -1,10 +1,6 @@
 import { Component, HostListener, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { OnlineStatusService, OnlineStatusType } from 'ngx-online-status';
-import { CheckStatusService } from '../../services/check-status.service';
-import { ScoreService } from '../../services/score.service';
 import { navItems } from './administrador_nav';
-import { AppModule } from '../../app.module';
 
 @Component({
   selector: 'app-administrador-layout',
@@ -30,10 +26,7 @@ export class AdministradorLayoutComponent implements OnInit {
     }
   }
 
-  constructor(private scoreService: ScoreService,private router: Router) {
-
-
-    
+  constructor(private router: Router) {
    }
   public sidebarMinimized = false;
   public navItems = navItems;

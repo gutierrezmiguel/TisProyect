@@ -1,7 +1,9 @@
 import { Component, OnInit, HostListener, SimpleChanges } from '@angular/core';
 import { Router } from '@angular/router';
+import { OnlineStatusService, OnlineStatusType } from 'ngx-online-status';
 import { Ova } from '../../models/ova.interface';
 import { OvaService } from '../../services/ova.service';
+import { SyncService } from '../../services/sync.service';
 
 
 
@@ -23,16 +25,47 @@ export class OvasCarouselComponent implements OnInit {
   public orderBy;
   ovas: Ova[];
 
+
+  onlineStatusCheck: any = OnlineStatusType;
+  status: OnlineStatusType; //Enum provided by ngx-online-status
+  offline: any;
   installEvent = null;
 
 
-  constructor(private router: Router, private ovaService: OvaService) { }
+
+  constructor(private syncService: SyncService,private onlineStatusService: OnlineStatusService,private router: Router, private ovaService: OvaService) { 
+    this.onlineStatusService.status.subscribe((status: OnlineStatusType) => {
+      // Retrieve Online status Type
+      this.status = status;
+      this.offline = (status === this.onlineStatusCheck.OFFLINE)
+
+      if (!this.offline) {
+        console.log("online");
+        this.syncService.getOvas().subscribe(
+          (response: Ova[])=>{
+            this.ovas = response
+          }
+        )
+      }
+      else {
+        console.log("offline");
+        
+        this.ovas = this.ovaService.ovas;
+      }
+    
+
+  });
+  }
 
 
 
   ngOnInit(): void {
 
-    this.getOvas();
+      this.getOnlineOvas()
+
+      if(!this.ovas){
+        this.ovas = this.ovaService.ovas
+      }
 
 
   }
@@ -61,21 +94,16 @@ export class OvasCarouselComponent implements OnInit {
     this.installEvent = event;
   }
 
-  getOvas() {
+  getOnlineOvas(){
+      this.syncService.getOvas().subscribe(
+        (response: Ova[])=>{
+          this.ovas = response
+        }
+      )
+  }
 
-    this.ovaService.getOvas().subscribe(
-      (response: any) => {
-
-        this.ovaService.setOvas(response)
-        this.ovas = response;
-        this.ovas = this.ovas.sort(function (a, b) {
-          return a.rating - b.rating
-        })
-
-
-      }
-    )
-
+  getOfflineOvas(){
+    this.ovas = this.ovaService.ovas;
   }
 
   detallarOva(id_ova) {
@@ -88,9 +116,7 @@ export class OvasCarouselComponent implements OnInit {
 
 
   change(event) {
-
-
-
+    
     if (this.filter && this.filterType) {
       if (this.filterType == 1) {
         let filtro = this.ovaService.ovas.filter(ova => ova.title.includes(this.filter))
@@ -165,10 +191,10 @@ export class OvasCarouselComponent implements OnInit {
     }
     else if (orderType == 4) {
       this.ovas.sort(function (a, b) {
-          var dateA = new Date(a.date).getTime();
-          var dateB = new Date(b.date).getTime();
-          return dateA > dateB ? -1 : 1;
-        })
+        var dateA = new Date(a.date).getTime();
+        var dateB = new Date(b.date).getTime();
+        return dateA > dateB ? -1 : 1;
+      })
 
     }
 
