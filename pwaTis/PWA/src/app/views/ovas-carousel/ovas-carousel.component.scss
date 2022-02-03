@@ -42,6 +42,32 @@ body {
   }
 }
 
+@media screen and (min-width: 1000px) {
+  .boton-instalar {
+    display: none;
+  }
+
+  .boton-cerrar-sesion {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 1300px) and (min-width: 600px) {
+  .descripcion-tarjeta {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 769px) and (min-width: 600px) {
+  .fecha-tarjeta {
+    display: none;
+  }
+
+  .creador-tarjeta {
+    display: none;
+  }
+}
+
 .rating {
   font-size: 25px;
   border-radius: 2px;

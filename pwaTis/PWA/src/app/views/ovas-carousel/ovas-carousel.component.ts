@@ -1,4 +1,4 @@
-import { Component, OnInit, SimpleChanges } from '@angular/core';
+import { Component, OnInit, HostListener, SimpleChanges } from '@angular/core';
 import { Router } from '@angular/router';
 import { OnlineStatusService, OnlineStatusType } from 'ngx-online-status';
 import { Ova } from '../../models/ova.interface';
@@ -29,6 +29,7 @@ export class OvasCarouselComponent implements OnInit {
   onlineStatusCheck: any = OnlineStatusType;
   status: OnlineStatusType; //Enum provided by ngx-online-status
   offline: any;
+  installEvent = null;
 
 
 
@@ -69,6 +70,29 @@ export class OvasCarouselComponent implements OnInit {
 
   }
 
+  installByUser () {
+    console.log("instalevent: " + this.installEvent)
+    if(this.installEvent){
+      console.log("entra pero no hace nada installbyuser")
+      this.installEvent.prompt();
+      this.installEvent.userChoice.then(rta => {
+        console.log(rta);
+      })
+      
+    }
+  }
+
+  cerrarSesion(){
+    localStorage.clear();
+    this.router.navigateByUrl('/login')
+  }
+
+  @HostListener('window:beforeinstallprompt', ['$event'])
+  onBeforeInstallPrompt(event : Event) {
+    console.log(event);
+    event.preventDefault();
+    this.installEvent = event;
+  }
 
   getOnlineOvas(){
       this.syncService.getOvas().subscribe(

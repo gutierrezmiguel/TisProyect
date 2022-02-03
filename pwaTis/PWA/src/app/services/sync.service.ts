@@ -9,6 +9,7 @@ import { OnlineStatusService, OnlineStatusType } from 'ngx-online-status';
 import Swal from 'sweetalert2'
 import { User, UserResponse } from '../models/user.interface';
 import { Ova } from '../models/ova.interface';
+import { Router } from '@angular/router';
 
 
 
@@ -30,7 +31,7 @@ export class SyncService {
     status: OnlineStatusType; //Enum provided by ngx-online-status
     offline: any;
 
-    constructor(private onlineStatusService: OnlineStatusService, private checkStatusService: CheckStatusService, private http: HttpClient) {
+    constructor(private router: Router,private onlineStatusService: OnlineStatusService, private checkStatusService: CheckStatusService, private http: HttpClient) {
         this.onlineStatusService.status.subscribe((status: OnlineStatusType) => {
             // Retrieve Online status Type
             this.status = status;
@@ -40,7 +41,7 @@ export class SyncService {
                 Swal.fire({
                     title: 'Reconectado',
                     icon: 'success',
-                    confirmButtonText: 'Aceptar',
+                    showConfirmButton: false,
                     width: '20%',
                     backdrop: false,
                     timer: 3000,
@@ -54,16 +55,16 @@ export class SyncService {
                     }
                 )
             }
-            else {
-                Swal.fire({
+            else{
+                Swal.fire({ 
                     title: 'Desconectado',
                     icon: 'warning',
-                    confirmButtonText: 'Aceptar',
+                    showConfirmButton: false,
                     width: '20%',
                     backdrop: false,
                     timer: 3000,
                     toast: true,
-                    position: 'top-end'
+                    position: 'top-end',
                 })
             }
 
@@ -136,15 +137,19 @@ export class SyncService {
     public async saveRatingIndexDB(rating: ScoreIDB) {
 
         Swal.fire({
-            title: 'Sin conexión a internet, guardaremos su calificación localmente hasta que se reanude la conexión',
+            title: 'Sin conexión a internet. Guardaremos su calificación localmente hasta que se reanude la conexión',
             icon: 'warning',
             confirmButtonText: 'Aceptar',
-            width: '20%',
+            width: '40%',
             backdrop: false,
-            timer: 3000,
+            timer: 1000,
             toast: true,
             position: 'top-end'
-        })
+        }).then(
+            (response =>{
+                this.router.navigateByUrl('Ovas')
+            })
+        )
 
         await this.tableScores.add(rating);
         const todosRatings: ScoreIDB[] = await this.tableScores.toArray();
@@ -160,10 +165,10 @@ export class SyncService {
         if (todosRatings.length > 0) {
 
             Swal.fire({
-                title: 'Conexión retomada, sincronizaremos su información con el servidor',
+                title: '¡Conexión retomada! Estamos sincronizando su información con el servidor',
                 icon: 'success',
                 confirmButtonText: 'Aceptar',
-                width: '20%',
+                width: '40%',
                 backdrop: false,
                 timer: 3000,
                 toast: true,
@@ -241,15 +246,19 @@ export class SyncService {
             }
 
             Swal.fire({
-                title: 'Ova calificado',
+                title: '¡Se ha calificado el ova correctamente!',
                 icon: 'success',
-                confirmButtonText: 'aceptar',
                 width: '20%',
+                showConfirmButton: false,
                 backdrop: false,
-                timer: 3000,
+                timer: 1000,
                 toast: true,
                 position: 'bottom-end'
-            })
+            }).then(
+                (response =>{
+                    this.router.navigateByUrl('Ovas')
+                })
+            )
             return this.http.post<any>(this.baseUrl + 'score/merge', newScore);
 
         }

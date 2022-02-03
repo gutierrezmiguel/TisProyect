@@ -1,4 +1,19 @@
 <div class="container mt-4">
+  <div class="m-0 col-12 d-flex">
+    <button
+      class="btn btn-primary boton-instalar col-6"
+      (click)="installByUser()"
+    >
+      Install App
+    </button>
+    <button
+      type="button"
+      class="btn btn-danger boton-cerrar-sesion ml-1 col-6"
+      (click)="cerrarSesion()"
+    >
+      Cerrar sesión
+    </button>
+  </div>
   <div class="card m-2 mb-4">
     <!-- FILTROS -->
     <div class="card-body p-0 pt-3">
@@ -246,12 +261,12 @@
         </span>
         <div class="card-body">
           <h5 class="card-title">{{ ova.title }}</h5>
-          <p class="card-text">{{ ova.description }}</p>
+          <p class="card-text descripcion-tarjeta">{{ ova.description }}</p>
           <div class="rounded bg-secondary col-12">
-            <i class="text-left">{{ ova.creator }}</i>
+            <i class="text-left creador-tarjeta">{{ ova.creator }}</i>
           </div>
           <div class="rounded bg-success mt-2 col-12">
-            <i class="text-left text-white">{{ ova.date }}</i>
+            <i class="text-left text-white fecha-tarjeta">{{ ova.date }}</i>
           </div>
           <ngb-rating
             class="rating"
