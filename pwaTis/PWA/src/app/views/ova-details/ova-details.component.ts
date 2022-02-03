@@ -53,7 +53,7 @@ export class OvaDetailsComponent implements OnInit {
   constructor(private ovaService: OvaService, private syncService: SyncService, private s3Service: S3Service, private aRoute: ActivatedRoute, private router: Router) { }
 
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
     this.ova_id = Number(this.aRoute.snapshot.paramMap.get("id_ova"))
     this.user_id = Number(localStorage.getItem("id"))
 
@@ -66,7 +66,15 @@ export class OvaDetailsComponent implements OnInit {
 
     );
 
-    this.ova = this.ovaService.getOva(this.ova_id)
+    this.ova = await this.ovaService.getOva(this.ova_id)
+
+    if(!this.ova){
+      this.syncService.getOva(this.ova_id).subscribe(
+        (response)=>{
+          this.ova = response
+        }
+      )
+    }
 
 
   }
@@ -75,9 +83,9 @@ export class OvaDetailsComponent implements OnInit {
     this.router.navigateByUrl("Ovas")
   }
 
-  getOva(id_ova: number) {
+  async getOva(id_ova: number) {
 
-    this.ova = this.ovaService.getOva(id_ova)
+    this.ova = await this.ovaService.getOva(id_ova)
   }
 
   rateOva(rating: number) {
@@ -85,17 +93,17 @@ export class OvaDetailsComponent implements OnInit {
     console.log("Entró con rating de ", rating);
 
 
-    let newScore: ScoreIDB = {
-      userId: this.user_id,
-      ovaId: this.ova_id,
-      scoreNumber: rating
-    }
-
+   
 
 
 
     if (rating) {
-
+      let newScore: ScoreIDB = {
+        userId: this.user_id,
+        ovaId: this.ova_id,
+        scoreNumber: rating
+      }
+  
       {
         console.log(newScore);
         
@@ -137,6 +145,8 @@ export class OvaDetailsComponent implements OnInit {
       }
     )
   }
+
+
 
 
 

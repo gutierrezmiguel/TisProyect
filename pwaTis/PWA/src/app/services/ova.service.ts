@@ -15,46 +15,36 @@ export class OvaService {
 
   baseUrl = environment.apiBaseUrl + 'ova/'
 
-  onlineStatusCheck: any = OnlineStatusType;
-  status: OnlineStatusType; //Enum provided by ngx-online-status
-  offline: any;
 
-  constructor(private onlineStatusService: OnlineStatusService, private syncService: SyncService, private http: HttpClient) {
+  constructor( private syncService: SyncService, private http: HttpClient) {
 
-    this.onlineStatusService.status.subscribe((status: OnlineStatusType) => {
-      // Retrieve Online status Type
-      this.status = status;
-      this.offline = (status === this.onlineStatusCheck.OFFLINE)
+    this.getOnlineOvas()
 
-      if (!this.offline) {
+    if(!this.ovas){
+      this.syncService.getOvasDB().then(
+         (response =>{
+          this.ovas = response
+         })
+      );
+    }
 
-        this.syncService.deleteOvasDB().then(
-          (response =>{
-            this.syncService.getOvasDB().then(
-              (response => {
-                this.ovas = response;
-              })
-            )
-          })
-        )
+    
+
+  }
+
+   getOnlineOvas() {
+    this.syncService.getOvas().subscribe(
+      (response: Ova[]) => {
+        this.ovas = response
+        console.log(this.ovas);
         
       }
-      else {
-      }
-
-    });
-
-    this.syncService.getOvasDB().then(
-      (response => {
-        this.ovas = response;
-      })
-
     )
   }
 
 
-
-  getOva(id_ova: number) {
+  async getOva(id_ova: number) {
+    this.ovas = await this.syncService.getOvasDB();
     console.log(id_ova);
     let busquedaOva = this.ovas.find(ovas => ovas.idOva === id_ova);
     console.log(busquedaOva);

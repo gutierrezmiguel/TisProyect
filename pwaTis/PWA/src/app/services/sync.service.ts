@@ -24,6 +24,8 @@ export class SyncService {
     private tableUsers: Dexie.Table<UserResponse, any> = null;
     private tableOvas: Dexie.Table<Ova, any> = null;
 
+    public ovasIDB : Ova[] = []
+
     baseUrl = environment.apiBaseUrl + ''
 
 
@@ -31,7 +33,7 @@ export class SyncService {
     status: OnlineStatusType; //Enum provided by ngx-online-status
     offline: any;
 
-    constructor(private router: Router,private onlineStatusService: OnlineStatusService, private checkStatusService: CheckStatusService, private http: HttpClient) {
+    constructor(private router: Router, private onlineStatusService: OnlineStatusService, private checkStatusService: CheckStatusService, private http: HttpClient) {
         this.onlineStatusService.status.subscribe((status: OnlineStatusType) => {
             // Retrieve Online status Type
             this.status = status;
@@ -49,14 +51,12 @@ export class SyncService {
                     position: 'top-end'
                 }).then(
                     response => {
-
                         this.sendIndexedToApi();
-                        this.setOvasIndexDB();
                     }
                 )
             }
-            else{
-                Swal.fire({ 
+            else {
+                Swal.fire({
                     title: 'Desconectado',
                     icon: 'warning',
                     showConfirmButton: false,
@@ -99,26 +99,15 @@ export class SyncService {
 
     public async setOvasIndexDB() {
 
-        const todosOvas: Ova[] = await this.tableOvas.toArray()
-
-        await this.tableOvas.bulkDelete(todosOvas);
-            
-        this.deleteOvasDB().then(
-            (response =>{
-                this.getOvas().subscribe(
-                    (response: Ova[]) => {
-                        this.tableOvas.bulkAdd(response).then(
-                            response => {
-                                console.log("Ovas añadidos");
-        
-                            }
-                        )
-                    }
-                )
-            })
+        this.getOvas().subscribe(
+            (response: Ova[]) => {
+                this.tableOvas.bulkAdd(response)
+            }
         )
 
-        
+
+
+
     }
 
     public async setUsersIndexDB() {
@@ -146,8 +135,7 @@ export class SyncService {
             toast: true,
             position: 'top-end'
         }).then(
-            (response =>{
-                this.router.navigateByUrl('Ovas')
+            (response => {
             })
         )
 
@@ -198,15 +186,18 @@ export class SyncService {
 
     public async deleteOvasDB() {
 
+        console.log("borrando Ovas");
+
+
         const todosOvas: Ova[] = await this.tableOvas.toArray()
 
-        for (const ova of todosOvas) {
-            (async response => {
-                await this.tableOvas.delete(ova.idOva)
-            }
-            )
+        todosOvas.forEach(async ova => {
 
-        }
+            await this.tableOvas.delete(ova.idOva)
+            console.log("Se borro el ova :", ova);
+
+
+        });
 
 
     }
@@ -255,8 +246,7 @@ export class SyncService {
                 toast: true,
                 position: 'bottom-end'
             }).then(
-                (response =>{
-                    this.router.navigateByUrl('Ovas')
+                (response => {
                 })
             )
             return this.http.post<any>(this.baseUrl + 'score/merge', newScore);
@@ -276,6 +266,10 @@ export class SyncService {
 
     public getOvas(): Observable<Ova[]> {
         return this.http.get<Ova[]>(this.baseUrl + 'ova/list');
+    }
+
+    public getOva(ovaid: number): Observable<Ova> {
+        return this.http.get<Ova>(this.baseUrl + 'ova/'+ ovaid);
     }
 
 

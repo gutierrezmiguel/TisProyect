@@ -54,7 +54,10 @@ body {
 
 @media screen and (max-width: 1300px) and (min-width: 600px) {
   .descripcion-tarjeta {
+    min-height: 7.2em;
+    min-height: 7.2em;
     display: none;
+    line-height: 1.8em;
   }
 }
 

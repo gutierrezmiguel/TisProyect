@@ -14,14 +14,18 @@ import { SyncService } from './services/sync.service';
 export class AppComponent implements OnInit {
 
   constructor(
-    private scoreService : SyncService,
+    private syncService : SyncService,
     private router: Router,
     public iconSet: IconSetService
   ) {
     // iconSet singleton
-    this.scoreService.startIndexedDB();
-    this.scoreService.setUsersIndexDB();
-    this.scoreService.setOvasIndexDB();
+    this.syncService.startIndexedDB();
+    this.syncService.setUsersIndexDB();
+    this.syncService.deleteOvasDB().then(
+      (response =>{
+        this.syncService.setOvasIndexDB();
+      })
+    );
 
     iconSet.icons = { ...freeSet };
   }

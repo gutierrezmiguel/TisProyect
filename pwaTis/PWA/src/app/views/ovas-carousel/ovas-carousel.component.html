@@ -261,7 +261,10 @@
         </span>
         <div class="card-body">
           <h5 class="card-title">{{ ova.title }}</h5>
-          <p class="card-text descripcion-tarjeta">{{ ova.description }}</p>
+          
+          <!--
+          <p class="card-text descripcion-tarjeta">{{ (ova.description.length>80)? (ova.description | slice:0:80)+'...':(ova.description) }}</p>
+          -->
           <div class="rounded bg-secondary col-12">
             <i class="text-left creador-tarjeta">{{ ova.creator }}</i>
           </div>

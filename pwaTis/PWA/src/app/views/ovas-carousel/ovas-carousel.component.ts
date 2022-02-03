@@ -33,76 +33,94 @@ export class OvasCarouselComponent implements OnInit {
 
 
 
-  constructor(private syncService: SyncService,private onlineStatusService: OnlineStatusService,private router: Router, private ovaService: OvaService) { 
-    this.onlineStatusService.status.subscribe((status: OnlineStatusType) => {
+  constructor(private syncService: SyncService, private onlineStatusService: OnlineStatusService, private router: Router, private ovaService: OvaService) {
+    this.onlineStatusService.status.subscribe(async (status: OnlineStatusType) => {
       // Retrieve Online status Type
       this.status = status;
       this.offline = (status === this.onlineStatusCheck.OFFLINE)
 
       if (!this.offline) {
-        console.log("online");
-        this.syncService.getOvas().subscribe(
-          (response: Ova[])=>{
-            this.ovas = response
-          }
-        )
+        
+        console.log("///////////////////////////////////");
+
+        console.log("OVAS CARRUSEL ONLINE ACTUALMENTE: ");
+
+        console.log("ONLINE");
+        this.syncService.deleteOvasDB().then(
+          (async response => {
+            this.syncService.setOvasIndexDB().then(
+              (async response => {
+
+                this.getOnlineOvas();
+
+
+              })
+            )
+          })
+        );
+
+
       }
       else {
-        console.log("offline");
-        
-        this.ovas = this.ovaService.ovas;
+        console.log("///////////////////////////////////");
+        console.log("OVAS CARRUSEL OFFLINE");
+        this.ovas = await this.syncService.getOvasDB()
       }
+
+      console.log("///////////////////////////////////");
+
+
+    });
+  }
+
+
+
+  ngOnInit(): void{
+
+    
+    this.getOnlineOvas(); 
     
 
-  });
-  }
-
-
-
-  ngOnInit(): void {
-
-      this.getOnlineOvas()
-
-      if(!this.ovas){
-        this.ovas = this.ovaService.ovas
-      }
+    
 
 
   }
 
-  installByUser () {
+  installByUser() {
     console.log("instalevent: " + this.installEvent)
-    if(this.installEvent){
+    if (this.installEvent) {
       console.log("entra pero no hace nada installbyuser")
       this.installEvent.prompt();
       this.installEvent.userChoice.then(rta => {
         console.log(rta);
       })
-      
+
     }
   }
 
-  cerrarSesion(){
+  cerrarSesion() {
     localStorage.clear();
     this.router.navigateByUrl('/login')
   }
 
   @HostListener('window:beforeinstallprompt', ['$event'])
-  onBeforeInstallPrompt(event : Event) {
+  onBeforeInstallPrompt(event: Event) {
     console.log(event);
     event.preventDefault();
     this.installEvent = event;
   }
 
-  getOnlineOvas(){
-      this.syncService.getOvas().subscribe(
-        (response: Ova[])=>{
-          this.ovas = response
-        }
-      )
+  getOnlineOvas() {
+    this.syncService.getOvas().subscribe(
+      (response: Ova[]) => {
+        this.ovas = response
+        console.log(this.ovas);
+        
+      }
+    )
   }
 
-  getOfflineOvas(){
+  getOfflineOvas() {
     this.ovas = this.ovaService.ovas;
   }
 
@@ -116,7 +134,7 @@ export class OvasCarouselComponent implements OnInit {
 
 
   change(event) {
-    
+
     if (this.filter && this.filterType) {
       if (this.filterType == 1) {
         let filtro = this.ovaService.ovas.filter(ova => ova.title.includes(this.filter))
