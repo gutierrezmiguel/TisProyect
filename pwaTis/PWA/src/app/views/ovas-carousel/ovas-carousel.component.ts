@@ -137,18 +137,18 @@ export class OvasCarouselComponent implements OnInit {
 
     if (this.filter && this.filterType) {
       if (this.filterType == 1) {
-        let filtro = this.ovaService.ovas.filter(ova => ova.title.includes(this.filter))
+        let filtro = this.ovaService.ovas.filter(ova => ova.title.toLowerCase().includes(this.filter.toLowerCase()))
         this.ovas = filtro;
 
       }
       else if (this.filterType == 2) {
-        this.ovas = this.ovas.filter(ova => ova.creator.includes(this.filter))
+        this.ovas = this.ovas.filter(ova => ova.creator.toLowerCase().includes(this.filter.toLowerCase()))
       }
       else if (this.filterType == 3) {
-        this.ovas = this.ovas.filter(ova => ova.subject.includes(this.filter))
+        this.ovas = this.ovas.filter(ova => ova.subject.toLowerCase().includes(this.filter.toLowerCase()))
       }
       else if (this.filterType == 4) {
-        this.ovas = this.ovas.filter(ova => ova.creator.includes(this.filter))
+        this.ovas = this.ovas.filter(ova => ova.creator.toLowerCase().includes(this.filter.toLowerCase()))
       }
     }
 
