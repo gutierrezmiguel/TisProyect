@@ -64,7 +64,7 @@ export class OvasCarouselComponent implements OnInit {
       else {
         console.log("///////////////////////////////////");
         console.log("OVAS CARRUSEL OFFLINE");
-        this.ovas = await this.syncService.getOvasDB()
+        this.ovas = this.ovaService.ovas;
       }
 
       console.log("///////////////////////////////////");
