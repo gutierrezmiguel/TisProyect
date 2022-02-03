@@ -36,7 +36,7 @@ export class OvaService {
     this.syncService.getOvas().subscribe(
       (response: Ova[]) => {
         this.ovas = response
-        console.log(this.ovas);
+        //console.log(this.ovas);
         
       }
     )
@@ -45,9 +45,9 @@ export class OvaService {
 
   async getOva(id_ova: number) {
     this.ovas = await this.syncService.getOvasDB();
-    console.log(id_ova);
+    //console.log(id_ova);
     let busquedaOva = this.ovas.find(ovas => ovas.idOva === id_ova);
-    console.log(busquedaOva);
+    //console.log(busquedaOva);
     return busquedaOva;
   }
 

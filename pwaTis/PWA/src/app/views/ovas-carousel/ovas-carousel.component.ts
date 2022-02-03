@@ -41,11 +41,11 @@ export class OvasCarouselComponent implements OnInit {
 
       if (!this.offline) {
         
-        console.log("///////////////////////////////////");
+        //console.log("///////////////////////////////////");
 
-        console.log("OVAS CARRUSEL ONLINE ACTUALMENTE: ");
+        //console.log("OVAS CARRUSEL ONLINE ACTUALMENTE: ");
 
-        console.log("ONLINE");
+        //console.log("ONLINE");
         this.syncService.deleteOvasDB().then(
           (async response => {
             this.syncService.setOvasIndexDB().then(
@@ -62,12 +62,12 @@ export class OvasCarouselComponent implements OnInit {
 
       }
       else {
-        console.log("///////////////////////////////////");
-        console.log("OVAS CARRUSEL OFFLINE");
+        //console.log("///////////////////////////////////");
+        //console.log("OVAS CARRUSEL OFFLINE");
         this.ovas = this.ovaService.ovas;
       }
 
-      console.log("///////////////////////////////////");
+      //console.log("///////////////////////////////////");
 
 
     });
@@ -87,12 +87,12 @@ export class OvasCarouselComponent implements OnInit {
   }
 
   installByUser() {
-    console.log("instalevent: " + this.installEvent)
+    //console.log("instalevent: " + this.installEvent)
     if (this.installEvent) {
-      console.log("entra pero no hace nada installbyuser")
+      //console.log("entra pero no hace nada installbyuser")
       this.installEvent.prompt();
       this.installEvent.userChoice.then(rta => {
-        console.log(rta);
+        //console.log(rta);
       })
 
     }
@@ -105,7 +105,7 @@ export class OvasCarouselComponent implements OnInit {
 
   @HostListener('window:beforeinstallprompt', ['$event'])
   onBeforeInstallPrompt(event: Event) {
-    console.log(event);
+    //console.log(event);
     event.preventDefault();
     this.installEvent = event;
   }
@@ -114,7 +114,7 @@ export class OvasCarouselComponent implements OnInit {
     this.syncService.getOvas().subscribe(
       (response: Ova[]) => {
         this.ovas = response
-        console.log(this.ovas);
+        //console.log(this.ovas);
         
       }
     )
@@ -171,7 +171,7 @@ export class OvasCarouselComponent implements OnInit {
 
     let orderType = this.orderBy
 
-    console.log(orderType);
+    //console.log(orderType);
 
     if (orderType == 1) {
       this.ovas.sort(function (a, b) {

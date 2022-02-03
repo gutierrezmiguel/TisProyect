@@ -90,7 +90,7 @@ export class OvaDetailsComponent implements OnInit {
 
   rateOva(rating: number) {
 
-    console.log("Entró con rating de ", rating);
+    //console.log("Entró con rating de ", rating);
 
 
    
@@ -105,12 +105,12 @@ export class OvaDetailsComponent implements OnInit {
       }
   
       {
-        console.log(newScore);
+        //console.log(newScore);
         
         this.syncService.mergeScore(newScore).subscribe(
           (response: any) => {
 
-            console.log("Calificado");
+            //console.log("Calificado");
 
           }
         )

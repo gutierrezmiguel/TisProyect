@@ -42,7 +42,7 @@ export class RegisterComponent {
       password  : this.registerForm.get('password')?.value
     }
 
-    console.log(credentials);
+    //console.log(credentials);
     
 
     
@@ -50,7 +50,7 @@ export class RegisterComponent {
 
     this.authService.registerUser(credentials).subscribe(
       (response: UserResponse)=>{
-        //console.log(response);
+        ////console.log(response);
         localStorage.setItem('id',String(response.idUser));
         localStorage.setItem('username',response.username);
         localStorage.setItem('password',response.password);

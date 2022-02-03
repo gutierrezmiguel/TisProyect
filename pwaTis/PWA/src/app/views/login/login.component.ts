@@ -45,13 +45,13 @@ export class LoginComponent implements OnInit {
       password  : this.credentialsForm.get('password')?.value
     }
 
-    console.log(credentials);
+    //console.log(credentials);
     
 
     this.scoreService.logIn(credentials).then(
       
       (response: UserResponse)=>{
-        console.log("user encontrado: ",response);
+        //console.log("user encontrado: ",response);
         
         localStorage.setItem('username',response.username);
         localStorage.setItem('password',response.password);

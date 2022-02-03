@@ -115,7 +115,7 @@ export class SyncService {
             (response: UserResponse[]) => {
                 this.tableUsers.bulkAdd(response).then(
                     response => {
-                        console.log("Usuarios añadidos a la idb");
+                        //console.log("Usuarios añadidos a la idb");
 
                     }
                 )
@@ -141,7 +141,7 @@ export class SyncService {
 
         await this.tableScores.add(rating);
         const todosRatings: ScoreIDB[] = await this.tableScores.toArray();
-        console.log('Ratings ', todosRatings);
+        //console.log('Ratings ', todosRatings);
 
     }
 
@@ -178,7 +178,7 @@ export class SyncService {
 
 
         }
-        console.log();
+        //console.log();
 
 
 
@@ -186,7 +186,7 @@ export class SyncService {
 
     public async deleteOvasDB() {
 
-        console.log("borrando Ovas");
+        //console.log("borrando Ovas");
 
 
         const todosOvas: Ova[] = await this.tableOvas.toArray()
@@ -194,7 +194,7 @@ export class SyncService {
         todosOvas.forEach(async ova => {
 
             await this.tableOvas.delete(ova.idOva)
-            console.log("Se borro el ova :", ova);
+            //console.log("Se borro el ova :", ova);
 
 
         });
@@ -212,7 +212,7 @@ export class SyncService {
         const users = await this.tableUsers.toArray();
 
         const findedUser = users.find(DBuser => DBuser.username === user.username && DBuser.password === user.password)
-        console.log(findedUser);
+        //console.log(findedUser);
 
         return findedUser;
     }

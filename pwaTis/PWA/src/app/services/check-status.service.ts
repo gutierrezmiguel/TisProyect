@@ -16,7 +16,7 @@ export class CheckStatusService {
       this.status = status;
       this.offline = (status === this.onlineStatusCheck.OFFLINE)
 
-      console.log(this.offline);
+      //console.log(this.offline);
       
      
       

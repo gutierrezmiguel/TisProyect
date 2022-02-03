@@ -15,12 +15,12 @@ export class AdministradorLayoutComponent implements OnInit {
   
 
   installByUser () {
-    console.log("instalevent: " + this.installEvent)
+    //console.log("instalevent: " + this.installEvent)
     if(this.installEvent){
-      console.log("entra pero no hace nada installbyuser")
+      //console.log("entra pero no hace nada installbyuser")
       this.installEvent.prompt();
       this.installEvent.userChoice.then(rta => {
-        console.log(rta);
+        //console.log(rta);
       })
       
     }
@@ -50,7 +50,7 @@ export class AdministradorLayoutComponent implements OnInit {
 
   @HostListener('window:beforeinstallprompt', ['$event'])
   onBeforeInstallPrompt(event : Event) {
-    console.log(event);
+    //console.log(event);
     event.preventDefault();
     this.installEvent = event;
   }

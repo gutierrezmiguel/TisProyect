@@ -44,11 +44,11 @@ export class AppComponent implements OnInit {
       serverPublicKey : this.VAPID_PUBLIC_KEY
     }).then(sub => {
       const token = JSON.parse(JSON.stringify(sub));
-    //console.log("PjOOOOOOOOOOOOOOOOOOOOOOOO :", token);
+    ////console.log("PjOOOOOOOOOOOOOOOOOOOOOOOO :", token);
     this.apiRest.saveToken(token).subscribe((res:Object) => {
-      console.log(res);
+      //console.log(res);
     }, (err) =>{
-      console.log('ERR', err);
+      //console.log('ERR', err);
     });
 
     }).catch(err => console.error('UPS: (', err))
