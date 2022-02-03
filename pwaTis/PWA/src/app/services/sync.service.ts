@@ -98,7 +98,10 @@ export class SyncService {
 
     public async setOvasIndexDB() {
 
-       
+        const todosOvas: Ova[] = await this.tableOvas.toArray()
+
+        await this.tableOvas.bulkDelete(todosOvas);
+            
         this.deleteOvasDB().then(
             (response =>{
                 this.getOvas().subscribe(
