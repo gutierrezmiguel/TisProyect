@@ -24,9 +24,7 @@ export class OvaService {
   }
 
   getOvaOffline(id_ova: number) {
-    console.log(id_ova);
     let busquedaOva =  this.ovas.find(ovas => ovas.idOva === id_ova);
-    console.log(busquedaOva);
     return busquedaOva;
   }
 

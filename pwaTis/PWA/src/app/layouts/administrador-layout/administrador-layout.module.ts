@@ -13,11 +13,17 @@ import { GooglePlaceModule } from 'ngx-google-places-autocomplete';
 import { OvasCarouselComponent } from '../../views/ovas-carousel/ovas-carousel.component';
 import { NgbCarouselModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { OvaDetailsComponent } from '../../views/ova-details/ova-details.component';
+import { AdministradorLayoutComponent } from './administrador-layout.component';
+import { OnlineStatusModule } from 'ngx-online-status';
+
+
+
 
 @NgModule({
   declarations: [
+    
     OvasCarouselComponent,
-    OvaDetailsComponent
+    OvaDetailsComponent,
     
   ],
   imports: [
@@ -33,9 +39,8 @@ import { OvaDetailsComponent } from '../../views/ova-details/ova-details.compone
     HttpClientModule,
     GooglePlaceModule,
     NgbModule,
-    NgbCarouselModule
-    
-    
+    NgbCarouselModule,
+    OnlineStatusModule
 
     
   ],
