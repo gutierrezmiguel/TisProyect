@@ -11,11 +11,11 @@ export class FormsComponent {
   iconCollapse: string = 'icon-arrow-up';
 
   collapsed(event: any): void {
-    // //console.log(event);
+    // console.log(event);
   }
 
   expanded(event: any): void {
-    // //console.log(event);
+    // console.log(event);
   }
 
   toggleCollapse(): void {
