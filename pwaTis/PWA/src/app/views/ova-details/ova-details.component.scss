@@ -9,9 +9,20 @@
   }
 }
 
+@media screen and (min-width: 600px) {
+  .tarjeta-ova {
+    padding: 40px;
+  }
+}
+
 @media screen and (max-width: 600px) {
   .btn-volver {
     width: 100%;
+  }
+
+  .tarjeta-ova {
+    padding: 10px;
+    padding-top: 20px;
   }
 }
 
