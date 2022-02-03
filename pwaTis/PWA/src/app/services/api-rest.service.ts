@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class ApiRestService {
-  public url = 'http://localhost:9000';
+  public url = 'https://heroku-notifications-api.herokuapp.com';
 
   constructor(private http: HttpClient) {    
    }
