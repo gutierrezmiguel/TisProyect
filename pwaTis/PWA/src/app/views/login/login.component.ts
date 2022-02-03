@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { User, UserResponse } from '../../models/user.interface';
-import { AuthService } from '../../services/auth.service';
+import { SyncService } from '../../services/sync.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -11,7 +11,7 @@ import { AuthService } from '../../services/auth.service';
 export class LoginComponent implements OnInit {
 
   
-  constructor(private fb: FormBuilder,private router: Router, private authService: AuthService){   
+  constructor(private fb: FormBuilder,private router: Router, private scoreService : SyncService ){   
   }
 
   credentialsForm: FormGroup = this.fb.group({
@@ -48,10 +48,11 @@ export class LoginComponent implements OnInit {
     console.log(credentials);
     
 
-    this.authService.logIn(credentials).subscribe(
+    this.scoreService.logIn(credentials).then(
       
       (response: UserResponse)=>{
-        console.log(response);
+        console.log("user encontrado: ",response);
+        
         localStorage.setItem('username',response.username);
         localStorage.setItem('password',response.password);
         localStorage.setItem('id',String(response.idUser));

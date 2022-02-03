@@ -7,6 +7,8 @@ import Dexie from 'dexie';
 import { CheckStatusService } from './check-status.service';
 import { OnlineStatusService, OnlineStatusType } from 'ngx-online-status';
 import Swal from 'sweetalert2'
+import { User, UserResponse } from '../models/user.interface';
+import { Ova } from '../models/ova.interface';
 
 
 
@@ -14,12 +16,14 @@ import Swal from 'sweetalert2'
 @Injectable({
     providedIn: 'root'
 })
-export class ScoreService {
+export class SyncService {
 
     private db: Dexie;
-    private table: Dexie.Table<ScoreIDB, any> = null;
+    private tableScores: Dexie.Table<ScoreIDB, any> = null;
+    private tableUsers: Dexie.Table<UserResponse, any> = null;
+    private tableOvas: Dexie.Table<Ova, any> = null;
 
-    baseUrl = environment.apiBaseUrl + 'score/'
+    baseUrl = environment.apiBaseUrl + ''
 
 
     onlineStatusCheck: any = OnlineStatusType;
@@ -27,10 +31,6 @@ export class ScoreService {
     offline: any;
 
     constructor(private onlineStatusService: OnlineStatusService, private checkStatusService: CheckStatusService, private http: HttpClient) {
-
-
-        this.startIndexedDB();
-
         this.onlineStatusService.status.subscribe((status: OnlineStatusType) => {
             // Retrieve Online status Type
             this.status = status;
@@ -47,13 +47,14 @@ export class ScoreService {
                     toast: true,
                     position: 'top-end'
                 }).then(
-                    response =>{
-                        
-                this.sendIndexedToApi();
+                    response => {
+
+                        this.sendIndexedToApi();
+                        this.setOvasIndexDB();
                     }
                 )
             }
-            else{
+            else {
                 Swal.fire({
                     title: 'Desconectado',
                     icon: 'warning',
@@ -74,12 +75,59 @@ export class ScoreService {
 
     }
 
-    private startIndexedDB() {
+    public startIndexedDB() {
         this.db = new Dexie('db-PWA');
         this.db.version(1).stores({
             scoreIDB: '++id'
         })
-        this.table = this.db.table('scoreIDB');
+
+        this.db.version(2).stores({
+            userResponse: 'idUser'
+        })
+
+        this.db.version(3).stores({
+            ova: 'idOva'
+        })
+
+        this.tableUsers = this.db.table('userResponse')
+        this.tableScores = this.db.table('scoreIDB');
+        this.tableOvas = this.db.table('ova')
+
+
+    }
+
+    public async setOvasIndexDB() {
+
+       
+        this.deleteOvasDB().then(
+            (response =>{
+                this.getOvas().subscribe(
+                    (response: Ova[]) => {
+                        this.tableOvas.bulkAdd(response).then(
+                            response => {
+                                console.log("Ovas añadidos");
+        
+                            }
+                        )
+                    }
+                )
+            })
+        )
+
+        
+    }
+
+    public async setUsersIndexDB() {
+        this.getAllUsers().subscribe(
+            (response: UserResponse[]) => {
+                this.tableUsers.bulkAdd(response).then(
+                    response => {
+                        console.log("Usuarios añadidos a la idb");
+
+                    }
+                )
+            }
+        )
     }
 
     public async saveRatingIndexDB(rating: ScoreIDB) {
@@ -95,8 +143,8 @@ export class ScoreService {
             position: 'top-end'
         })
 
-        await this.table.add(rating);
-        const todosRatings: ScoreIDB[] = await this.table.toArray();
+        await this.tableScores.add(rating);
+        const todosRatings: ScoreIDB[] = await this.tableScores.toArray();
         console.log('Ratings ', todosRatings);
 
     }
@@ -104,7 +152,7 @@ export class ScoreService {
     public async sendIndexedToApi() {
 
 
-        const todosRatings: ScoreIDB[] = await this.table.toArray()
+        const todosRatings: ScoreIDB[] = await this.tableScores.toArray()
 
         if (todosRatings.length > 0) {
 
@@ -122,7 +170,7 @@ export class ScoreService {
                     for (const rating of todosRatings) {
                         this.mergeScore(rating).subscribe(
                             (async response => {
-                                await this.table.delete(rating.id)
+                                await this.tableScores.delete(rating.id)
                             }
                             )
                         );
@@ -133,14 +181,41 @@ export class ScoreService {
 
 
 
-
-
-
         }
         console.log();
 
 
 
+    }
+
+    public async deleteOvasDB() {
+
+        const todosOvas: Ova[] = await this.tableOvas.toArray()
+
+        for (const ova of todosOvas) {
+            (async response => {
+                await this.tableOvas.delete(ova.idOva)
+            }
+            )
+
+        }
+
+
+    }
+
+    public async getOvasDB() {
+        const ovas = await this.tableOvas.toArray();
+
+        return ovas;
+    }
+
+    public async logIn(user: User) {
+        const users = await this.tableUsers.toArray();
+
+        const findedUser = users.find(DBuser => DBuser.username === user.username && DBuser.password === user.password)
+        console.log(findedUser);
+
+        return findedUser;
     }
 
     public mergeScore(score: ScoreIDB): Observable<any> {
@@ -172,16 +247,25 @@ export class ScoreService {
                 toast: true,
                 position: 'bottom-end'
             })
-            return this.http.post<any>(this.baseUrl + 'merge', newScore);
+            return this.http.post<any>(this.baseUrl + 'score/merge', newScore);
 
         }
 
     }
 
+    public getAllUsers(): Observable<UserResponse[]> {
+        return this.http.get<UserResponse[]>(this.baseUrl + 'user/all');
+    }
+
     public scorePerUser(id_ova: number, id_user: number): Observable<Score> {
 
-        return this.http.get<Score>(this.baseUrl + id_ova + "/" + id_user);
+        return this.http.get<Score>(this.baseUrl + "score/" + id_ova + "/" + id_user);
     }
+
+    public getOvas(): Observable<Ova[]> {
+        return this.http.get<Ova[]>(this.baseUrl + 'ova/list');
+    }
+
 
 
 

@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { Ova } from '../models/ova.interface';
+import { SyncService } from './sync.service';
 
 @Injectable({
   providedIn: 'root'
@@ -13,23 +14,25 @@ export class OvaService {
 
   baseUrl = environment.apiBaseUrl + 'ova/'
 
-  constructor(private http: HttpClient) { }
-
-  getOvas(): Observable<Ova[]> {
-    return this.http.get<Ova[]>(this.baseUrl + 'list');
+  constructor(private syncService: SyncService ,private http: HttpClient) { 
+    this.syncService.getOvasDB().then(
+      (response =>{
+        this.ovas = response;
+      })
+      
+    )
   }
 
-  setOvas(ovasList: Ova[]) {
-    this.ovas = ovasList;
-  }
 
-  getOvaOffline(id_ova: number) {
+
+
+  getOva(id_ova: number) {
+    console.log(id_ova);
     let busquedaOva =  this.ovas.find(ovas => ovas.idOva === id_ova);
+    console.log(busquedaOva);
     return busquedaOva;
   }
 
-  getOvaOnline(id_ova: number): Observable<Ova>{
-    return this.http.get<Ova>(this.baseUrl + id_ova);
-  }
+ 
 
 }

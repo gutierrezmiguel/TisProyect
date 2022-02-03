@@ -1,8 +1,9 @@
-import { Component, HostListener, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 
 import { IconSetService } from '@coreui/icons-angular';
 import { freeSet } from '@coreui/icons';
+import { SyncService } from './services/sync.service';
 
 @Component({
   // tslint:disable-next-line
@@ -13,10 +14,15 @@ import { freeSet } from '@coreui/icons';
 export class AppComponent implements OnInit {
 
   constructor(
+    private scoreService : SyncService,
     private router: Router,
     public iconSet: IconSetService
   ) {
     // iconSet singleton
+    this.scoreService.startIndexedDB();
+    this.scoreService.setUsersIndexDB();
+    this.scoreService.setOvasIndexDB();
+
     iconSet.icons = { ...freeSet };
   }
 

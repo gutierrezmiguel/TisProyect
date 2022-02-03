@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { OnlineStatusService, OnlineStatusType } from 'ngx-online-status';
-import { ScoreService } from './score.service';
 
 @Injectable({
   providedIn: 'root'
