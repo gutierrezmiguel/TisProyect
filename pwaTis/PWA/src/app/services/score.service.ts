@@ -40,7 +40,7 @@ export class ScoreService {
                 Swal.fire({
                     title: 'Reconectado',
                     icon: 'success',
-                    confirmButtonText: 'Aceptar',
+                    showConfirmButton: false,
                     width: '20%',
                     backdrop: false,
                     timer: 3000,
@@ -54,15 +54,15 @@ export class ScoreService {
                 )
             }
             else{
-                Swal.fire({
+                Swal.fire({ 
                     title: 'Desconectado',
                     icon: 'warning',
-                    confirmButtonText: 'Aceptar',
+                    showConfirmButton: false,
                     width: '20%',
                     backdrop: false,
                     timer: 3000,
                     toast: true,
-                    position: 'top-end'
+                    position: 'top-end',
                 })
             }
 
@@ -85,12 +85,12 @@ export class ScoreService {
     public async saveRatingIndexDB(rating: ScoreIDB) {
 
         Swal.fire({
-            title: 'Sin conexión a internet, guardaremos su calificación localmente hasta que se reanude la conexión',
+            title: 'Sin conexión a internet. Guardaremos su calificación localmente hasta que se reanude la conexión',
             icon: 'warning',
             confirmButtonText: 'Aceptar',
-            width: '20%',
+            width: '40%',
             backdrop: false,
-            timer: 3000,
+            timer: 8000,
             toast: true,
             position: 'top-end'
         })
@@ -109,10 +109,10 @@ export class ScoreService {
         if (todosRatings.length > 0) {
 
             Swal.fire({
-                title: 'Conexión retomada, sincronizaremos su información con el servidor',
+                title: '¡Conexión retomada! Estamos sincronizando su información con el servidor',
                 icon: 'success',
                 confirmButtonText: 'Aceptar',
-                width: '20%',
+                width: '40%',
                 backdrop: false,
                 timer: 3000,
                 toast: true,
@@ -163,10 +163,10 @@ export class ScoreService {
             }
 
             Swal.fire({
-                title: 'Ova calificado',
+                title: '¡Se ha calificado el ova correctamente!',
                 icon: 'success',
-                confirmButtonText: 'aceptar',
                 width: '20%',
+                showConfirmButton: false,
                 backdrop: false,
                 timer: 3000,
                 toast: true,
